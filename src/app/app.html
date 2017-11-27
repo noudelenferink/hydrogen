@@ -6,15 +6,18 @@
   </ion-header>
   <ion-content>
     <div *ngIf="!auth.isAuthenticated()">
-      <button ion-button block color="primary" (click)="auth.login()">Log In</button>
+      <button ion-button block color="primary" (click)="auth.login()" *ngIf="isApp">Log In</button>
+      <button ion-button block color="secondary" (click)="auth.login()" *ngIf="!isApp">Log In</button>
     </div>
     <div *ngIf="auth.isAuthenticated()">
       <h2>{{ auth.user.name }}</h2>
     </div>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+      <template ngFor let-p [ngForOf]="pages">
+        <button menuClose ion-item (click)="openPage(p)" *ngIf="auth.isAuthorized(p.permissions)">
+          {{p.title}}
+        </button>
+      </template>
     </ion-list>
   </ion-content>
 </ion-menu>

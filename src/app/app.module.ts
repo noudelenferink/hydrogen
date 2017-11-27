@@ -1,34 +1,74 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { AuthConfig, AuthHttp } from 'angular2-jwt';
+import { Http, HttpModule } from '@angular/http';
+import { GLIonic2EnvConfigurationModule } from 'gl-ionic2-env-configuration';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { TrainingsTabsPageModule } from '../pages/trainings-tabs/trainings-tabs.module';
+import { TrainingDetailPageModule } from '../pages/training-detail/training-detail.module';
+import { TrainingsManagerListPageModule } from '../pages/trainings-manager-list/trainings-manager-list.module';
+import { TrainingsManagerCreatePageModule } from '../pages/trainings-manager-create/trainings-manager-create.module';
+import { TrainingsManagerPageModule } from '../pages/trainings-manager/trainings-manager.module'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+// Services
 import { AuthService } from '../services/auth.service';
+import { SessionService } from '../services/session.service';
+import { TrainingService } from '../services/training.service';
+import { PlayerService } from '../services/player-service';
+
+// Pipes
+import { PipesModule } from '../pipes/pipes.module';
+
+export function getAuthHttp(http) {
+  console.log(window.localStorage.getItem('id_token'));
+  return new AuthHttp(new AuthConfig({
+   //headerPrefix: YOUR_HEADER_PREFIX,
+    noJwtError: false,
+    globalHeaders: [{'Accept': 'application/json'}],
+    tokenGetter: () => {
+      return window.localStorage.getItem('id_token');
+    },
+  }), http);
+}
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    GLIonic2EnvConfigurationModule,
+    HttpModule,
+    PipesModule,
+    TrainingsTabsPageModule,
+    TrainingDetailPageModule,
+    TrainingsManagerListPageModule,
+    TrainingsManagerPageModule,
+    TrainingsManagerCreatePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AuthService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    TrainingService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http]
+    },
+    SessionService,
+    PlayerService
   ]
 })
 export class AppModule {}

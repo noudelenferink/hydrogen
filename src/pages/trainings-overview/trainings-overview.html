@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Seizoensoverzicht</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="trainingOverview">
+    <ion-item *ngIf="trainingOverview.length === 0">
+      <div>Er is (nog) geen seizoensoverzicht beschikbaar.</div>
+    </ion-item>
+    <ion-item *ngFor="let playerAttendence of trainingOverview | orderBy:'-AttendencePercentage'">
+      <div>{{ playerAttendence.Player | playerFullName }}</div>
+      <div>{{ playerAttendence.Player.FullNamex }}</div>
+      <div item-right>{{ playerAttendence.AttendencePercentage | number: '1.0-0' }} %</div>
+    </ion-item>
+  </ion-list>
+</ion-content>

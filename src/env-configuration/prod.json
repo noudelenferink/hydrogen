@@ -1,0 +1,4 @@
+{
+  "env": "prod",
+  "apiUrl": "http://nifnic.nl:3000"
+}
