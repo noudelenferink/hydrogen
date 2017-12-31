@@ -1,0 +1,6 @@
+== DEBUG BUILD ==
+npm run ionic:serve
+
+== RELEASE BUILD ==
+npm run ionic:build
+ionic cordova build android

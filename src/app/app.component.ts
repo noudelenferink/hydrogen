@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { CompetitionTabsPage } from '../pages/competition-tabs/competition-tabs';
 import { TrainingsTabsPage } from '../pages/trainings-tabs/trainings-tabs';
 import { TrainingsManagerListPage} from '../pages/trainings-manager-list/trainings-manager-list'
 
@@ -34,6 +35,7 @@ export class MyApp {
     this.pages = [
       { title: 'Trainingen', component: TrainingsTabsPage, permissions: ["View_Trainings"]  },
       { title: 'Trainingenbeheer', component: TrainingsManagerListPage, permissions: ["Manage_Trainings"] },
+      { title: 'Competities', component: CompetitionTabsPage, permissions: [] },
     ];
   }
 
