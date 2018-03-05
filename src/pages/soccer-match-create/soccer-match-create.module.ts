@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CompetitionRankingPage } from './competition-ranking';
-
+import { SoccerMatchCreatePage } from './soccer-match-create';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ComponentsModule } from '../../components/components.module';
+
 @NgModule({
   declarations: [
-    CompetitionRankingPage,
+    SoccerMatchCreatePage,
   ],
   imports: [
-    IonicPageModule.forChild(CompetitionRankingPage),
-    PipesModule,
-    ComponentsModule
+    IonicPageModule.forChild(SoccerMatchCreatePage),
+    ComponentsModule,
+    PipesModule
   ],
 })
-export class CompetitionRankingPageModule {}
+export class SoccerMatchCreatePageModule {}

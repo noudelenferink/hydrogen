@@ -9,6 +9,7 @@ import { TrainingsManagerListPage} from '../pages/trainings-manager-list/trainin
 
 import Auth0Cordova from '@auth0/cordova';
 import { AuthService } from '../services/auth.service';
+import { CompetitionManagerPage } from '../pages/competition-manager/competition-manager';
 @Component({
   templateUrl: 'app.html'
 })
@@ -36,6 +37,7 @@ export class MyApp {
       { title: 'Trainingen', component: TrainingsTabsPage, permissions: ["View_Trainings"]  },
       { title: 'Trainingenbeheer', component: TrainingsManagerListPage, permissions: ["Manage_Trainings"] },
       { title: 'Competities', component: CompetitionTabsPage, permissions: [] },
+      { title: 'Competitiebeheer', component: CompetitionManagerPage, permissions: [] },
     ];
   }
 
