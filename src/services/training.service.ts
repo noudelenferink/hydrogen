@@ -14,7 +14,6 @@ import { TrainingCreateModel } from '../models/training-create-model';
 
 @Injectable()
 export class TrainingService extends BaseService {
-	//apiUrl: string
 	constructor(
 		private authHttp: AuthHttp,
 		private http: Http,
