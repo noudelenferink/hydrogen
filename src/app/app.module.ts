@@ -29,6 +29,8 @@ import { PlayerService } from '../services/player-service';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
+import { PlayerTabsPageModule } from '../pages/player-tabs/player-tabs.module';
+import { PlayerTrainingsPageModule } from '../pages/player-trainings/player-trainings.module';
 
 export function getAuthHttp(http) {
   console.log(window.localStorage.getItem('id_token'));
@@ -61,6 +63,8 @@ export function getAuthHttp(http) {
     CompetitionSchedulePageModule,
     CompetitionRankingPageModule,
     CompetitionResultsPageModule,
+    PlayerTabsPageModule,
+    PlayerTrainingsPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

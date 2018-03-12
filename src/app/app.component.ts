@@ -35,7 +35,7 @@ export class MyApp {
     this.pages = [
       { title: 'Trainingen', component: TrainingsTabsPage, permissions: ["View_Trainings"]  },
       { title: 'Trainingenbeheer', component: TrainingsManagerListPage, permissions: ["Manage_Trainings"] },
-      { title: 'Competities', component: CompetitionTabsPage, permissions: [] },
+      // { title: 'Competities', component: CompetitionTabsPage, permissions: [] },
     ];
   }
 

@@ -12,7 +12,6 @@ export class TrainingsTabsPage {
   trainingsOverviewRoot = 'TrainingsOverviewPage'
   trainingsListRoot = 'TrainingsListPage'
 
-
   constructor(public navCtrl: NavController, public auth: AuthService) {}
 
   ionViewCanEnter(): boolean{

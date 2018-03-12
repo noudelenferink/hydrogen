@@ -5,6 +5,7 @@ import { TrainingService } from '../../services/training.service';
 import { TrainingListItem } from '../../models/training-list-item';
 import { TrainingDetailPage } from '../training-detail/training-detail';
 import { SessionService } from '../../services/session.service';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,7 @@ import { SessionService } from '../../services/session.service';
 export class TrainingsListPage {
   currentTeam: { Id: number; Name: string; };
   currentSeason: { Id: number; Name: string; };
-  
+
   private trainings: TrainingListItem[];
 
   constructor(
@@ -24,19 +25,32 @@ export class TrainingsListPage {
     public session: SessionService,
     public trainingService: TrainingService
   ) {
-    this.currentSeason = this.session.getCurrentSeason();
-    this.currentTeam = this.session.getCurrentTeam();
-    this.loadTrainingsList();
+  }
+
+  refreshTrainingsList(refresher) {
+    this.loadTrainingsList().subscribe(result => refresher.complete());
   }
 
   loadTrainingsList() {
-    this.trainingService.getTrainings(this.currentSeason.Id, this.currentTeam.Id).subscribe(result => this.trainings = result);
+    return new Observable((observer) => {
+        this.trainingService.getTrainings(this.currentSeason.Id, this.currentTeam.Id).subscribe(result => {
+          this.trainings = result;
+          observer.next();
+          observer.complete()
+        });
+    })
   }
 
   loadTraining(event, training) {
     this.app.getRootNav().push(TrainingDetailPage, {
       trainingId: training.TrainingID
     });
+  }
+
+  ionViewWillEnter() {
+    this.currentSeason = this.session.getCurrentSeason();
+    this.currentTeam = this.session.getCurrentTeam();
+    this.loadTrainingsList().subscribe();
   }
 
   ionViewDidLoad() {

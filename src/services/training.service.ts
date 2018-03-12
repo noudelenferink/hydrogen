@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import { EnvConfigurationProvider } from "gl-ionic2-env-configuration";
-import { IEnvConfiguration } from "../env-configuration/IEnvConfiguration";
+import { IEnvConfiguration } from '../env-configuration/IEnvConfiguration';
 
 import { BaseService } from './base.service';
 import { PlayerTrainingAttendence } from '../models/player-training-attendence';
@@ -22,33 +22,22 @@ export class TrainingService extends BaseService {
 		super(envConfiguration);
 	}
 
-	test() {
-		console.log('button pressed from service!');
-		return this.http.get('http://xps-13-nick:3000/trainings/1')
-			.map(result => result.json());
-	}
-
 	getSeasonOverview(seasonId: number, teamId: number): Observable<PlayerTrainingAttendence[]> {
-		console.debug(`getting season overview for season ${seasonId} and team ${teamId}`);
-
 		return this.http.post(this.apiUrl + '/trainings/overview', { seasonID: seasonId, teamID: teamId })
 			.map(result => result.json());
 	}
 
 	getTrainings(seasonId: number, teamId: number): Observable<TrainingListItem[]> {
-		console.debug(`getting list of trainings for season ${seasonId} and team ${teamId}`);
 		return this.http.post(this.apiUrl + '/trainings', { seasonID: seasonId, teamID: teamId })
 			.map(result => result.json());
 	}
 
 	getTraining(trainingId: number) {
-		console.debug(`getting training ${trainingId}`);
 		return this.http.get(this.apiUrl + '/trainings/' + trainingId)
 			.map(result => result.json());
 	}
 
 	updateAttendees(trainingId: number, attendees: number[]) {
-		console.debug(`updating training ${trainingId} attendees`);
 		return this.http.post(this.apiUrl + '/trainings/' + trainingId + '/attendees', { attendees: attendees })
 			.map(result => result.json());
 	}

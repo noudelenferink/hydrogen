@@ -90,7 +90,7 @@
     <allow-navigation href="http://10.58.7.90:8080" />
     <allow-navigation href="http://10.58.5.170:8100" />
     <engine name="android" spec="^6.4.0" />
-    <plugin name="cordova-plugin-safariviewcontroller" spec="^1.5.2" />
+    <plugin name="cordova-plugin-safariviewcontroller" spec="^1.5.3" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
         <variable name="URL_SCHEME" value="com.nifnic.rankix" />
         <variable name="ANDROID_SCHEME" value="com.nifnic.rankix" />
