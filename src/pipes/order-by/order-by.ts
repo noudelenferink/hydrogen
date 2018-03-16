@@ -31,12 +31,14 @@ export class OrderByPipe implements PipeTransform {
       }
   
       public transform(input: any, config = "+"): any {
-          if (!input) { return input; }
+        if (!input || !Array.isArray(input)) {
+            // Normally garbage in garbage out. To ensure the ngFor works, return null.
+            return null; 
+        }
   
           // make a copy of the input"s reference
           this.value = [...input];
           let value = this.value;
-          if (!Array.isArray(value)) { return value; }
   
           if (!Array.isArray(config) || (Array.isArray(config) && config.length === 1)) {
               let propertyToCheck: string = !Array.isArray(config) ? config : config[0];

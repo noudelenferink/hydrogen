@@ -14,3 +14,44 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@import './theme/grid';
+
+$positive-color: #009640;
+$negative-color: #e30614;
+
+.text-left {
+	text-align: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.current-team {
+	background-color: #d9e1fd;
+}
+
+.points-deducted {
+	color: $negative-color;
+}
+
+.team-win {
+	color: $positive-color;
+}
+
+.team-loss {
+	color: $negative-color;
+}
+
+.img {
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
+
+.img.loading {
+  opacity: 0;
+}

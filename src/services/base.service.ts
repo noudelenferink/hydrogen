@@ -1,4 +1,4 @@
-import { Injectable, Injector, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { EnvConfigurationProvider } from 'gl-ionic2-env-configuration';
 import { IEnvConfiguration } from '../env-configuration/IEnvConfiguration';
 

@@ -9,13 +9,11 @@ import { IEnvConfiguration } from "../env-configuration/IEnvConfiguration";
 
 import { BaseService } from './base.service';
 import { PlayerTrainingAttendence } from '../models/player-training-attendence';
-import { Player } from '../models/player';
 import { TrainingListItem } from '../models/training-list-item';
 import { TrainingCreateModel } from '../models/training-create-model';
 
 @Injectable()
 export class TrainingService extends BaseService {
-	//apiUrl: string
 	constructor(
 		private authHttp: AuthHttp,
 		private http: Http,

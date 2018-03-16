@@ -1,0 +1,11 @@
+== API STARTEN ==
+export NODE_ENV=production && forever start /volume1/web/rest/app.js
+
+
+== DEBUG BUILD ==
+npm run ionic:serve
+
+== RELEASE BUILD ==
+npm run ionic:build
+ionic cordova build android
+

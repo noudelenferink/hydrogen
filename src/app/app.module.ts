@@ -6,11 +6,17 @@ import { Http, HttpModule } from '@angular/http';
 import { GLIonic2EnvConfigurationModule } from 'gl-ionic2-env-configuration';
 
 import { MyApp } from './app.component';
+
 import { TrainingsTabsPageModule } from '../pages/trainings-tabs/trainings-tabs.module';
 import { TrainingDetailPageModule } from '../pages/training-detail/training-detail.module';
 import { TrainingsManagerListPageModule } from '../pages/trainings-manager-list/trainings-manager-list.module';
 import { TrainingsManagerCreatePageModule } from '../pages/trainings-manager-create/trainings-manager-create.module';
-import { TrainingsManagerPageModule } from '../pages/trainings-manager/trainings-manager.module'
+import { TrainingsManagerPageModule } from '../pages/trainings-manager/trainings-manager.module';
+
+import { CompetitionTabsPageModule } from '../pages/competition-tabs/competition-tabs.module';
+import { CompetitionSchedulePageModule } from '../pages/competition-schedule/competition-schedule.module';
+import { CompetitionRankingPageModule } from '../pages/competition-ranking/competition-ranking.module';
+import { CompetitionResultsPageModule } from '../pages/competition-results/competition-results.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,7 +56,11 @@ export function getAuthHttp(http) {
     TrainingDetailPageModule,
     TrainingsManagerListPageModule,
     TrainingsManagerPageModule,
-    TrainingsManagerCreatePageModule
+    TrainingsManagerCreatePageModule,
+    CompetitionTabsPageModule,
+    CompetitionSchedulePageModule,
+    CompetitionRankingPageModule,
+    CompetitionResultsPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

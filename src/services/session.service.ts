@@ -17,7 +17,7 @@ export class SessionService {
     }
   
     public getCurrentCompetition() {
-      return {Id: 14, Name: 'Mannen zondag, 4, 6e klasse 22'}
+      return {Id: 16, Name: 'Competitie - 6e klasse 24'}
     }
 
 }

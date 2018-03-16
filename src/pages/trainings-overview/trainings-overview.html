@@ -16,8 +16,16 @@
     </ion-item>
     <ion-item *ngFor="let playerAttendence of trainingOverview | orderBy:'-AttendencePercentage'">
       <div>{{ playerAttendence.Player | playerFullName }}</div>
-      <div>{{ playerAttendence.Player.FullNamex }}</div>
-      <div item-right>{{ playerAttendence.AttendencePercentage | number: '1.0-0' }} %</div>
+      <div class="attended-indicator" width-sm-20 width-md-20 width-lg-10 item-right style="text-align: right">
+        <div [ngClass]="{ 'attended': playerAttendence.Training_x5 }"></div>
+        <div [ngClass]="{ 'attended': playerAttendence.Training_x4 }"></div>
+        <div [ngClass]="{ 'attended': playerAttendence.Training_x3 }"></div>
+        <div [ngClass]="{ 'attended': playerAttendence.Training_x2 }"></div>
+        <div [ngClass]="{ 'attended': playerAttendence.Training_x1 }"></div>
+      </div>
+      <div width-sm-15 width-md-15 width-lg-10 item-right style="text-align: right">
+        <span>{{ playerAttendence.AttendencePercentage | number: '1.0-0' }} %</span>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>
