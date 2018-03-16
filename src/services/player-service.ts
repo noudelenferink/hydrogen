@@ -18,5 +18,10 @@ export class PlayerService extends BaseService {
   getPlayers(seasonId: number, teamId: number) {
 		return this.http.post(this.apiUrl + '/players', { seasonID: seasonId, teamID: teamId })
 			.map(result => result.json());
-	}
+  }
+  
+  getPlayerTrainings(playerId: number, seasonId: number) {
+    return this.http.post(this.apiUrl + '/players/' + playerId + '/trainings', { seasonID: seasonId })
+      .map(result => result.json());
+  }
 }
