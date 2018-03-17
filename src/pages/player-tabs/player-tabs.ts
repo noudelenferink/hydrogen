@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
@@ -8,10 +8,10 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: 'player-tabs.html'
 })
 export class PlayerTabsPage {
-
   playerTrainingsRoot = 'PlayerTrainingsPage';
-
-  constructor(public navCtrl: NavController, public auth: AuthService) { }
+  constructor(public navCtrl: NavController, public auth: AuthService,
+    public navParams: NavParams) {
+     }
 
   ionViewCanEnter(): boolean {
     return this.auth.isAuthorized(["View_Players"]);

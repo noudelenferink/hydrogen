@@ -30,7 +30,7 @@ export class PlayerTrainingsPage {
 
   loadTrainings() {
     return new Observable((observer) => {
-      this.playerService.getPlayerTrainings(40, this.currentSeason.Id).subscribe(result => {
+      this.playerService.getPlayerTrainings(this.navParams.get('playerId'), this.currentSeason.Id).subscribe(result => {
         this.playerTrainings = result;
         observer.next();
         observer.complete()
