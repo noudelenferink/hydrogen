@@ -26,11 +26,11 @@ import { CompetitionService } from '../services/competition.service';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
+import { PlayerTabsPageModule } from '../pages/player-tabs/player-tabs.module';
+import { PlayerTrainingsPageModule } from '../pages/player-trainings/player-trainings.module';
 import { CompetitionManagerPageModule } from '../pages/competition-manager/competition-manager.module';
-import { SoccerMatchService } from '../services/soccer-match.service';
 
 export function getAuthHttp(http) {
-  console.log(window.localStorage.getItem('id_token'));
   return new AuthHttp(new AuthConfig({
    //headerPrefix: YOUR_HEADER_PREFIX,
     noJwtError: false,
@@ -53,7 +53,12 @@ export function getAuthHttp(http) {
     PipesModule,
     TrainingsTabsPageModule,
     TrainingsManagerListPageModule,
-    CompetitionTabsPageModule,
+    CompetitionTabsPageModule
+    CompetitionSchedulePageModule,
+    CompetitionRankingPageModule,
+    CompetitionResultsPageModule,
+    PlayerTabsPageModule,
+    PlayerTrainingsPageModule
     CompetitionManagerPageModule,
     ComponentsModule
   ],

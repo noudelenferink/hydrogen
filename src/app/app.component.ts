@@ -37,7 +37,7 @@ export class MyApp {
       { title: 'Trainingen', component: TrainingsTabsPage, permissions: ["View_Trainings"]  },
       { title: 'Trainingenbeheer', component: TrainingsManagerListPage, permissions: ["Manage_Trainings"] },
       { title: 'Competities', component: CompetitionTabsPage, permissions: [] },
-      { title: 'Competitiebeheer', component: CompetitionManagerPage, permissions: [] },
+      { title: 'Competitiebeheer', component: CompetitionManagerPage, permissions: [] }
     ];
   }
 

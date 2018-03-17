@@ -7,7 +7,7 @@ import { TrainingDetailPageModule } from '../training-detail/training-detail.mod
 
 @NgModule({
   declarations: [
-    TrainingsTabsPage,
+    TrainingsTabsPage
   ],
   imports: [
     IonicPageModule.forChild(TrainingsTabsPage),

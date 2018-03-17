@@ -9,14 +9,17 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="refreshTrainingsList($event)" pullMin="200" pullMax="pullMin + 60">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Verversen" refreshingSpinner="crescent" refreshingText="Bezig met verversen..."></ion-refresher-content>
+  </ion-refresher>
   <ion-list *ngIf="trainings">
       <ion-item *ngIf="trainings.length === 0">
-          <div>Er zijn nog geen trainingen opgeslagen voor dit seizoen.</div>
-        </ion-item>
-    <button ion-item *ngFor="let training of trainings | orderBy:'-TrainingDate'" (click)="loadTraining($event, training)">
-      <span>{{training.TrainingDate | date:'dd-MM-yyyy'}} &nbsp;</span>
-      <ion-badge *ngIf="training.IsBonus">extra</ion-badge>
-      <span item-right>{{training.NumAttendees}}</span>
-    </button>
-  </ion-list>
+        <div>Er zijn nog geen trainingen opgeslagen voor dit seizoen.</div>
+      </ion-item>
+      <button ion-item *ngFor="let training of trainings | orderBy:'-TrainingDate'" (click)="loadTraining($event, training)">
+        <span>{{training.TrainingDate | date:'dd-MM-yyyy'}} &nbsp;</span>
+        <ion-badge *ngIf="training.IsBonus">extra</ion-badge>
+        <span item-right>{{training.NumAttendees}}</span>
+      </button>
+    </ion-list>
 </ion-content>
