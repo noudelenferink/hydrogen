@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Competitiebeheer</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="createRound()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-list>
+    <ion-list-header>
+      <span>Datum</span>
+    </ion-list-header>
+    <button ion-item *ngFor="let competitionRound of competitionRounds | orderBy:'Date'" (click)="loadCompetitionRound($event, competitionRound)" (press)="promptDelete(competitionRound)">
+      <span>{{competitionRound.Date | date:'dd-MM-yyyy'}} &nbsp;</span>
+      <span>Speelronde {{competitionRound.RoundNumber}}</span>
+      <span item-right>{{competitionRound.NumPlayed}} / {{competitionRound.NumMatches}}</span>
+    </button>
+  </ion-list>
+</ion-content>
