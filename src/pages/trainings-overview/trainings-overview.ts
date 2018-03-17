@@ -1,30 +1,25 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { Component, Injector } from '@angular/core';
 
 import { TrainingService } from '../../services/training.service';
 import { SessionService } from '../../services/session.service';
 import { Observable } from 'rxjs/Observable';
 import { Player } from '../../models/player';
 import { PlayerTabsPage } from '../player-tabs/player-tabs';
-
+import { BasePage } from '../base/base';
+import { IonicPage } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-trainings-overview',
   templateUrl: 'trainings-overview.html',
 })
-export class TrainingsOverviewPage {
-  currentTeam: { Id: number; Name: string; };
-  currentSeason: { Id: number; Name: string; };
+export class TrainingsOverviewPage extends BasePage {
   public trainingOverview: any[];
 
   constructor(
-    private app: App,
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public session: SessionService,
+    injector: Injector,
     public trainingService: TrainingService
   ) {
-
+    super(injector);
   }
 
   refreshSeasonOverview(refresher) {
@@ -49,9 +44,12 @@ export class TrainingsOverviewPage {
   }
 
   ionViewWillEnter() {
-    this.currentSeason = this.session.getCurrentSeason();
-    this.currentTeam = this.session.getCurrentTeam();
-    this.loadSeasonOverview().subscribe();
+    let loading = this.loadingCtrl.create({
+      content: 'Laden...'
+    });
+    
+    loading.present();
+    this.loadSeasonOverview().subscribe(result => loading.dismiss());
   }
 
   ionViewDidLoad() {

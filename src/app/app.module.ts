@@ -33,7 +33,6 @@ import { PlayerTabsPageModule } from '../pages/player-tabs/player-tabs.module';
 import { PlayerTrainingsPageModule } from '../pages/player-trainings/player-trainings.module';
 
 export function getAuthHttp(http) {
-  console.log(window.localStorage.getItem('id_token'));
   return new AuthHttp(new AuthConfig({
    //headerPrefix: YOUR_HEADER_PREFIX,
     noJwtError: false,
@@ -55,7 +54,6 @@ export function getAuthHttp(http) {
     HttpModule,
     PipesModule,
     TrainingsTabsPageModule,
-    TrainingDetailPageModule,
     TrainingsManagerListPageModule,
     TrainingsManagerPageModule,
     TrainingsManagerCreatePageModule,
