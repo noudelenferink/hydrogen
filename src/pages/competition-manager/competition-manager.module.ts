@@ -6,17 +6,23 @@ import { ComponentsModule } from '../../components/components.module';
 import { CompetitionRoundManagerPageModule } from '../competition-round-manager/competition-round-manager.module';
 import { CompetitionRoundCreatePageModule } from '../competition-round-create/competition-round-create.module';
 import { SoccerMatchCreatePageModule } from '../soccer-match-create/soccer-match-create.module';
+import { CompetitionRoundsManagerPage } from '../competition-rounds-manager/competition-rounds-manager';
+import { CompetitionTeamsManagerPage } from '../competition-teams-manager/competition-teams-manager';
+import { CompetitionRoundsManagerPageModule } from '../competition-rounds-manager/competition-rounds-manager.module';
+import { CompetitionTeamsManagerPageModule } from '../competition-teams-manager/competition-teams-manager.module';
+import { CompetitionTeamCreatePageModule } from '../competition-team-create/competition-team-create.module';
 
 @NgModule({
   declarations: [
-    CompetitionManagerPage,
+    CompetitionManagerPage
   ],
   imports: [
     IonicPageModule.forChild(CompetitionManagerPage),
-    CompetitionRoundManagerPageModule,
+    CompetitionRoundsManagerPageModule,
+    CompetitionTeamsManagerPageModule,
+    
     CompetitionRoundCreatePageModule,
-    SoccerMatchCreatePageModule,
-    ComponentsModule,
+    CompetitionTeamCreatePageModule,
     PipesModule
   ],
 })

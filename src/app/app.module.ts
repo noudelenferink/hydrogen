@@ -29,6 +29,11 @@ import { PipesModule } from '../pipes/pipes.module';
 import { PlayerTabsPageModule } from '../pages/player-tabs/player-tabs.module';
 import { PlayerTrainingsPageModule } from '../pages/player-trainings/player-trainings.module';
 import { CompetitionManagerPageModule } from '../pages/competition-manager/competition-manager.module';
+import { CompetitionSchedulePageModule } from '../pages/competition-schedule/competition-schedule.module';
+import { CompetitionRankingPageModule } from '../pages/competition-ranking/competition-ranking.module';
+import { CompetitionResultsPageModule } from '../pages/competition-results/competition-results.module';
+import { SoccerMatchService } from '../services/soccer-match.service';
+import { TeamService } from '../services/team.service';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -53,12 +58,12 @@ export function getAuthHttp(http) {
     PipesModule,
     TrainingsTabsPageModule,
     TrainingsManagerListPageModule,
-    CompetitionTabsPageModule
+    CompetitionTabsPageModule,
     CompetitionSchedulePageModule,
     CompetitionRankingPageModule,
     CompetitionResultsPageModule,
     PlayerTabsPageModule,
-    PlayerTrainingsPageModule
+    PlayerTrainingsPageModule,
     CompetitionManagerPageModule,
     ComponentsModule
   ],
@@ -81,7 +86,8 @@ export function getAuthHttp(http) {
     SessionService,
     PlayerService,
     CompetitionService,
-    SoccerMatchService
+    SoccerMatchService,
+    TeamService
   ]
 })
 export class AppModule {}

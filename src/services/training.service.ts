@@ -24,7 +24,13 @@ export class TrainingService extends BaseService {
 
 	getSeasonOverview(seasonId: number, teamId: number): Observable<PlayerTrainingAttendence[]> {
 		return this.http.post(this.apiUrl + '/trainings/overview', { seasonID: seasonId, teamID: teamId })
-			.map(result => result.json());
+			.map(result => result.json())
+			.catch((err) => {
+                
+                // Do messaging and error handling here
+               
+                return Observable.throw(err)
+            });
 	}
 
 	getTrainings(seasonId: number, teamId: number): Observable<TrainingListItem[]> {

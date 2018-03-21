@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { PlayerFullNamePipe } from './player-full-name/player-full-name';
 import { OrderByPipe } from './order-by/order-by';
-//import { UsedTeamsPipe } from './used-teams/used-teams';
+import { UsedTeamsPipe } from './used-teams/used-teams';
 @NgModule({
 	declarations: [
 		PlayerFullNamePipe,
-    	OrderByPipe,
-		//UsedTeamsPipe
+		OrderByPipe,
+		UsedTeamsPipe
 	],
 	imports: [],
 	exports: [
 		PlayerFullNamePipe,
 		OrderByPipe,
-  //  UsedTeamsPipe
+		UsedTeamsPipe
 	]
 })
-export class PipesModule {}
+export class PipesModule { }

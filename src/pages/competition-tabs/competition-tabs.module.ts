@@ -5,6 +5,8 @@ import { CompetitionResultsPageModule } from '../competition-results/competition
 import { CompetitionSchedulePageModule } from '../competition-schedule/competition-schedule.module';
 import { CompetitionRankingPageModule } from '../competition-ranking/competition-ranking.module';
 import { PipesModule } from '../../pipes/pipes.module';
+import { CompetitionRoundCreatePageModule } from '../competition-round-create/competition-round-create.module';
+import { CompetitionTeamCreatePageModule } from '../competition-team-create/competition-team-create.module';
 
 @NgModule({
   declarations: [

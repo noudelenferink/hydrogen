@@ -95,4 +95,9 @@ export class CompetitionService extends BaseService {
     return this.http.post(this.apiUrl + '/competitions/' + competitionRound.CompetitionID + '/competition-rounds', {competitionRound: competitionRound})
       .map(result => result.json());
   }
+
+  createCompetitionTeam(competitionTeam) {
+    return this.http.post(this.apiUrl + '/competitions/' + competitionTeam.CompetitionID + '/competition-teams', {competitionTeam: competitionTeam})
+      .map(result => result.json());
+  }
 }
