@@ -11,6 +11,7 @@
             <span class="text-center" hide-sm width-md-10 width-lg-10 item-right><b>PM</b></span>
             <span class="text-center" width-sm-10 width-md-10 width-lg-10 item-right>+/-</span>
         </ion-list-header>
+        
         <ion-item *ngFor="let rankedTeam of competitionRanking | orderBy:'Rank'" [ngClass]="{'current-team': rankedTeam.isCurrentTeam}">
             <span class="text-right" width-sm-10 width-md-5 width-lg-5 item-left>{{ rankedTeam.Rank }}</span>
             <span>{{ rankedTeam.TeamName }}</span>

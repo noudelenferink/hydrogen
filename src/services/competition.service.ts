@@ -86,11 +86,6 @@ export class CompetitionService extends BaseService {
       .map(response => response.json() as Object[]);
   }
 
-  retrieveTeamLogo(teamId) {
-    return this.http.get(this.apiUrl + '/teams/' + teamId + '/logo')
-      .map(image => 'data:image/png;base64,' + image.text());
-  }
-
   createCompetitionRound(competitionRound) {
     return this.http.post(this.apiUrl + '/competitions/' + competitionRound.CompetitionID + '/competition-rounds', {competitionRound: competitionRound})
       .map(result => result.json());

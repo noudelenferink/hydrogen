@@ -19,6 +19,7 @@ import { CompetitionTeamCreatePageModule } from '../competition-team-create/comp
   imports: [
     IonicPageModule.forChild(CompetitionManagerPage),
     CompetitionRoundsManagerPageModule,
+    CompetitionRoundManagerPageModule,
     CompetitionTeamsManagerPageModule,
     
     CompetitionRoundCreatePageModule,

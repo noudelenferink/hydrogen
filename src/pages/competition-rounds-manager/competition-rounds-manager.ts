@@ -39,7 +39,7 @@ export class CompetitionRoundsManagerPage extends BasePage {
   }
 
   loadCompetitionRound(event, competitionRound) {
-    this.navCtrl.push(CompetitionRoundManagerPage, {
+    this.app.getRootNav().push(CompetitionRoundManagerPage, {
       competitionId: this.currentCompetition.Id,
       competitionRoundId: competitionRound.CompetitionRoundID
     });

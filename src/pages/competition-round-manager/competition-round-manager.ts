@@ -5,6 +5,7 @@ import { SessionService } from '../../services/session.service';
 import { CompetitionService } from '../../services/competition.service';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { SoccerMatchCreatePage } from '../soccer-match-create/soccer-match-create';
+import { SoccerMatchManagerPage } from '../soccer-match-manager/soccer-match-manager';
 
 @IonicPage()
 @Component({
@@ -37,9 +38,9 @@ export class CompetitionRoundManagerPage {
   }
 
   loadSoccerMatch(event, soccerMatchId) {
-    // this.navCtrl.push(SoccerMatchManagerPage, {
-    //   soccerMatchId: soccerMatchId
-    // });
+    this.navCtrl.push(SoccerMatchManagerPage, {
+      soccerMatchId: soccerMatchId
+    });
   }
 
   createSoccerMatch() {

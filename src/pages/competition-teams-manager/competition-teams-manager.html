@@ -17,8 +17,9 @@
       <span>Teamnaam</span>
     </ion-list-header>
     <button ion-item *ngFor="let competitionTeam of competitionTeams | orderBy:'Date'" (click)="loadCompetitionTeam($event, competitionTeam)">
-      <span>{{competitionTeam.Name}}</span>
-      <span text-right>{{competitionTeam.DefaultStartTime}}</span>
+        <app-team-logo item-left [teamId]="competitionTeam.Team.TeamID"></app-team-logo>
+        <span>{{competitionTeam.Team.Name}}</span>
+        <span text-right>{{competitionTeam.DefaultStartTime}}</span>
     </button>
   </ion-list>
 </ion-content>
