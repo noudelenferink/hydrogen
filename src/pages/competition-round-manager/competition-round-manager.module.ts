@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { CompetitionRoundManagerPage } from './competition-round-manager';
 import { SoccerMatchCreatePageModule } from '../soccer-match-create/soccer-match-create.module';
-import { SoccerMatchManagerPageModule } from '../soccer-match-manager/soccer-match-manager.module';
+import { SoccerMatchManagerTabsPageModule } from '../soccer-match-manager-tabs/soccer-match-manager-tabs.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,7 @@ import { SoccerMatchManagerPageModule } from '../soccer-match-manager/soccer-mat
   imports: [
     IonicPageModule.forChild(CompetitionRoundManagerPage),
     SoccerMatchCreatePageModule,
-    SoccerMatchManagerPageModule
+    SoccerMatchManagerTabsPageModule
   ],
 })
 export class CompetitionRoundManagerPageModule {}

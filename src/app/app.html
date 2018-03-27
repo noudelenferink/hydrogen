@@ -13,11 +13,11 @@
       <h2>{{ auth.user.name }}</h2>
     </div>
     <ion-list>
-      <template ngFor let-p [ngForOf]="pages">
+      <ng-template ngFor let-p [ngForOf]="pages">
         <button menuClose ion-item (click)="openPage(p)" *ngIf="auth.isAuthorized(p.permissions)">
           {{p.title}}
         </button>
-      </template>
+      </ng-template>
     </ion-list>
   </ion-content>
 </ion-menu>
