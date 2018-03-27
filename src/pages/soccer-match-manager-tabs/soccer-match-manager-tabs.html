@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Wedstrijd bewerken</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-tabs tabsPlacement="top">
+    <ion-tab [root]="general" [rootParams]="soccerMatchParams" tabTitle="Algemeen"></ion-tab>
+    <ion-tab [root]="formation" [rootParams]="soccerMatchParams" tabTitle="Opstelling" disabled></ion-tab>
+    <ion-tab [root]="events" [rootParams]="soccerMatchParams" tabTitle="Gebeurtenissen"></ion-tab>
+  </ion-tabs>
+</ion-content>

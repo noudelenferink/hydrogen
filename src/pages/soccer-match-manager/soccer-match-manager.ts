@@ -25,11 +25,12 @@ export class SoccerMatchManagerPage {
       fallbackDateTime: ['', Validators.nullValidator]
     });
 
-    this.soccerMatchId = this.navParams.get('soccerMatchId');
+    
   }
 
   ionViewWillEnter() {
-    this.loadSoccerMatch();
+    this.soccerMatch = this.navParams.get('soccerMatch');
+   // this.loadSoccerMatch();
   }
 
   loadSoccerMatch() {

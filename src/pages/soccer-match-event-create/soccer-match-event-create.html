@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>
+          Gebeurtenis aanmaken
+      </ion-title>
+      <ion-buttons start>
+          <button ion-button (click)="dismiss()">
+              <span ion-text color="primary" showWhen="ios">Cancel</span>
+              <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <ion-item>
+          <ion-label>Minuut</ion-label>
+          <ion-input type="number" min="0" max="90" [(ngModel)]="eventData.minute" placeholder="-" text-right></ion-input>
+      </ion-item>
+      <ion-item *ngIf="eventTypes">
+          <ion-label>Type</ion-label>
+          <ion-select [(ngModel)]="eventData.eventTypeId" (ngModelChange)="changePrimaryEventType($event)">
+              <ion-option [value]="eventType.EventTypeID" *ngFor="let eventType of eventTypes | primaryOnly | orderBy:'Name'">{{getEventName(eventType)}}</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item *ngIf="team.Players">
+          <ion-label>Speler</ion-label>
+          <ion-select [(ngModel)]="eventData.playerId" *ngIf="team.Players.length > 0">
+              <ion-option [value]="player.PlayerID" *ngFor="let player of team.Players | orderBy:['FirstName', 'Surname']">{{player | playerFullName}}</ion-option>
+          </ion-select>
+          <ion-input *ngIf="team.Players.length === 0" type="text" text-right disabled value="Onbekend"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let referenceEvent of eventData.referenceEvents | orderBy:'Name'">
+          <ion-item>
+              <ion-label>{{getEventName(referenceEvent, true)}}</ion-label>
+              <ion-toggle [(ngModel)]="referenceEvent.isEnabled"></ion-toggle>
+          </ion-item>
+          <ng-container *ngIf="referenceEvent.isEnabled && !referenceEvent.IsSamePlayerAsReference">
+              <ion-item *ngIf="team.Players">
+                  <ion-label>Speler</ion-label>
+                  <ion-select [(ngModel)]="referenceEvent.playerId" *ngIf="team.Players.length > 0">
+                      <ion-option [value]="player.PlayerID" *ngFor="let player of team.Players | orderBy:['FirstName', 'Surname']">{{player | playerFullName}}</ion-option>
+                  </ion-select>
+                  <ion-input *ngIf="team.Players.length === 0" type="text" text-right disabled value="Onbekend"></ion-input>
+              </ion-item>
+          </ng-container>
+      </ng-container>
+  </ion-list>
+  <button ion-button full (click)="createSoccerMatchEvent()">Aanmaken</button>
+</ion-content>
