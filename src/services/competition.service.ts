@@ -38,7 +38,7 @@ export class CompetitionService extends BaseService {
       .map(response => response.json() as Object[]);
   }
 
-  getCompetitionTeams(competitionId): Observable<Object[]> {
+  getCompetitionTeams(competitionId): Observable<any[]> {
     return this.http.get(this.apiUrl + '/competitions/' + competitionId + '/teams')
       .map(response => response.json() as Object[]);
   }

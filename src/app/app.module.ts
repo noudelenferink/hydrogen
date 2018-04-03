@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { Http, HttpModule } from '@angular/http';
 import { GLIonic2EnvConfigurationModule } from 'gl-ionic2-env-configuration';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { MyApp } from './app.component';
 
@@ -34,6 +35,7 @@ import { CompetitionRankingPageModule } from '../pages/competition-ranking/compe
 import { CompetitionResultsPageModule } from '../pages/competition-results/competition-results.module';
 import { SoccerMatchService } from '../services/soccer-match.service';
 import { TeamService } from '../services/team.service';
+import { TempServiceProvider } from '../providers/temp-service/temp-service';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -53,6 +55,7 @@ export function getAuthHttp(http) {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    SuperTabsModule.forRoot(),
     GLIonic2EnvConfigurationModule,
     HttpModule,
     PipesModule,
@@ -87,7 +90,8 @@ export function getAuthHttp(http) {
     PlayerService,
     CompetitionService,
     SoccerMatchService,
-    TeamService
+    TeamService,
+    TempServiceProvider
   ]
 })
 export class AppModule {}

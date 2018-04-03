@@ -15,7 +15,7 @@ import { CompetitionManagerPage } from '../pages/competition-manager/competition
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = TrainingsTabsPage;
+  rootPage: any = CompetitionManagerPage;
   pages: Array<{ title: string, component: any, permissions?: string[] }>;
   isApp: boolean;
 

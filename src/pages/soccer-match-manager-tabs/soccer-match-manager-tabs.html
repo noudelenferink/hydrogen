@@ -1,15 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Wedstrijd bewerken</ion-title>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-title>Wedstrijd bewerken</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-tabs tabsPlacement="top">
-    <ion-tab [root]="general" [rootParams]="soccerMatchParams" tabTitle="Algemeen"></ion-tab>
-    <ion-tab [root]="formation" [rootParams]="soccerMatchParams" tabTitle="Opstelling" disabled></ion-tab>
-    <ion-tab [root]="events" [rootParams]="soccerMatchParams" tabTitle="Gebeurtenissen"></ion-tab>
-  </ion-tabs>
+  <ion-row>
+    <div responsive class="team-header" *ngIf="soccerMatch">
+      <div class="team" width-sm-50 width-md-50 width-lg-50>
+        <app-team-logo item-left [teamId]="soccerMatch.HomeTeam.TeamID" width="60px" height="60px"></app-team-logo>
+        <span>{{soccerMatch.HomeTeam.Name}}</span>
+      </div>
+      <div class="team" width-sm-50 width-md-50 width-lg-50>
+        <app-team-logo item-right [teamId]="soccerMatch.AwayTeam.TeamID" width="60px" height="60px"></app-team-logo>
+        <span>{{soccerMatch.AwayTeam.Name}}</span>
+      </div>
+    </div>
+  </ion-row>
+  <super-tabs style="height: 80%" toolbarColor="light" toolbarBackground="primary" indicatorColor="light" *ngIf="tabsLoaded">
+    <super-tab [root]="general" title="Algemeen"></super-tab>
+    <super-tab [root]="formation" title="Opstelling"></super-tab>
+    <super-tab [root]="soccerMatchEvents" title="Gebeurtenissen"></super-tab>
+  </super-tabs>
+
 </ion-content>

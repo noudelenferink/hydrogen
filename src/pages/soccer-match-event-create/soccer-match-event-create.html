@@ -31,9 +31,9 @@
           <ion-input *ngIf="team.Players.length === 0" type="text" text-right disabled value="Onbekend"></ion-input>
       </ion-item>
       <ng-container *ngFor="let referenceEvent of eventData.referenceEvents | orderBy:'Name'">
-          <ion-item>
+          <ion-item >
               <ion-label>{{getEventName(referenceEvent, true)}}</ion-label>
-              <ion-toggle [(ngModel)]="referenceEvent.isEnabled"></ion-toggle>
+              <ion-toggle [(ngModel)]="referenceEvent.isEnabled" [disabled]="referenceEvent.IsRequiredReference"></ion-toggle>
           </ion-item>
           <ng-container *ngIf="referenceEvent.isEnabled && !referenceEvent.IsSamePlayerAsReference">
               <ion-item *ngIf="team.Players">

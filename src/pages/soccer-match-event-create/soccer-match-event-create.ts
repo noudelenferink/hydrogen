@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { PlayerService } from '../../services/player-service';
+import { PrimaryEventFilterPipe } from '../../pipes/primary-only';
 
 @IonicPage()
 @Component({
@@ -10,7 +11,7 @@ import { PlayerService } from '../../services/player-service';
   templateUrl: 'soccer-match-event-create.html',
 })
 export class SoccerMatchEventCreatePage extends BasePage {
-  soccerMatchId: number;
+  soccerMatch: any;
   currentTeam: any;
   currentSeason: any;
   eventTypes: any[];
@@ -29,7 +30,7 @@ export class SoccerMatchEventCreatePage extends BasePage {
 
   ionViewWillLoad() {
     this.eventData = {};
-    this.soccerMatchId = this.navParams.get('soccerMatchId');
+    this.soccerMatch = this.navParams.get('soccerMatch');
     this.team = this.navParams.get('team');
     this.currentSeason = this.session.getCurrentSeason();
     this.currentTeam = this.session.getCurrentTeam();
@@ -52,6 +53,7 @@ export class SoccerMatchEventCreatePage extends BasePage {
   getEventTypes() {
     this.soccerMatchService.getEventTypes().subscribe(result => {
       this.eventTypes = result;
+      this.eventTypes.forEach(et => et.isEnabled = et.IsRequiredReference === true);
     })
   }
 
@@ -61,7 +63,7 @@ export class SoccerMatchEventCreatePage extends BasePage {
   }
 
   getEventName(eventType, isReference) {
-    switch (eventType.EventID) {
+    switch (eventType.EventTypeID) {
       case 2:
         if (isReference) {
           return 'Tweede geel';
@@ -95,7 +97,7 @@ export class SoccerMatchEventCreatePage extends BasePage {
       });
     })
 
-    this.soccerMatchService.createSoccerMatchEvent(this.soccerMatchId, newSoccerMatchEvent)
+    this.soccerMatchService.createSoccerMatchEvent(this.soccerMatch.SoccerMatchID, newSoccerMatchEvent)
       .subscribe(result => this.dismiss(true));
   }
 
@@ -111,20 +113,4 @@ export class SoccerMatchEventCreatePage extends BasePage {
     console.log('ionViewDidLoad SoccerMatchEventCreatePage');
   }
 
-}
-
-import {Pipe, PipeTransform} from '@angular/core';
-@Pipe({
-    name: 'primaryOnly'
-})
-export class PrimaryEventFilterPipe implements PipeTransform {
-transform(input, args?) {
-    return input.filter(eventType => {
-      if(args) {
-        return eventType.ReferenceEventTypeID === args;
-      } else {
-        return eventType.IsPrimary;
-      }
-    });
-  }
 }

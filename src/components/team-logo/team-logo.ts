@@ -8,6 +8,9 @@ import { TeamService } from '../../services/team.service';
 
 export class TeamLogoComponent implements OnInit {
 	@Input() teamId: number;
+	@Input() width: string = '40px';
+	@Input() height: string = '40px';
+	
 	binaryImage: string;
 	loading: boolean;
 	constructor(private teamService: TeamService) { }

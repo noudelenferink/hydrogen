@@ -1,23 +1,25 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, Injector } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BasePage } from '../base/base';
 
 @IonicPage()
 @Component({
   selector: 'page-soccer-match-manager',
   templateUrl: 'soccer-match-manager.html',
 })
-export class SoccerMatchManagerPage {
+export class SoccerMatchManagerPage extends BasePage {
   soccerMatchId: number;
   manageSoccerMatchForm: FormGroup;
-  soccerMatch: any;
+  public soccerMatch: any;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
+    injector: Injector,
     public formBuilder: FormBuilder,
+    private events: Events,
     public soccerMatchService: SoccerMatchService) {
+    super(injector);
     this.manageSoccerMatchForm = formBuilder.group({
       homeGoals: ['', Validators.required],
       awayGoals: ['', Validators.required],
@@ -25,12 +27,13 @@ export class SoccerMatchManagerPage {
       fallbackDateTime: ['', Validators.nullValidator]
     });
 
-    
+    this.soccerMatch = soccerMatchService.currentSoccerMatch;
+    this.events.subscribe('loadedSoccerMatch', sm => {
+      this.soccerMatch = soccerMatchService.currentSoccerMatch;
+    });
   }
 
   ionViewWillEnter() {
-    this.soccerMatch = this.navParams.get('soccerMatch');
-   // this.loadSoccerMatch();
   }
 
   loadSoccerMatch() {

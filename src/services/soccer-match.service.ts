@@ -10,33 +10,34 @@ import { BaseService } from './base.service';
 
 @Injectable()
 export class SoccerMatchService extends BaseService {
-	constructor(
-		private authHttp: AuthHttp,
-		private http: Http,
-		private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
-	) {
-		super(envConfiguration);
-	}
+  public currentSoccerMatch: any;
+  constructor(
+    private authHttp: AuthHttp,
+    private http: Http,
+    private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
+  ) {
+    super(envConfiguration);
+  }
 
   getSoccerMatch(soccerMatchId) {
     return this.http.get(this.apiUrl + '/soccer-matches/' + soccerMatchId)
       .map(result => {
         var soccerMatch = result.json();
-        if(soccerMatch.SoccerMatchStatusID === 'CAN') {
+        if (soccerMatch.SoccerMatchStatusID === 'CAN') {
           soccerMatch.isCanceled = true;
         };
-
+        this.currentSoccerMatch = soccerMatch;
         return soccerMatch;
       });
   }
 
   updateSoccerMatch(soccerMatchId, updateData) {
-    return this.http.post(this.apiUrl + '/soccer-matches/' + soccerMatchId, {soccerMatch : updateData})
+    return this.http.post(this.apiUrl + '/soccer-matches/' + soccerMatchId, { soccerMatch: updateData })
       .map(result => result.json());
   }
 
   createSoccerMatch(soccerMatch) {
-    return this.http.post(this.apiUrl + '/soccer-matches', {soccerMatch : soccerMatch})
+    return this.http.post(this.apiUrl + '/soccer-matches', { soccerMatch: soccerMatch })
       .map(result => result.json());
   }
 
@@ -51,12 +52,12 @@ export class SoccerMatchService extends BaseService {
   }
 
   getSoccerMatchEvents(soccerMatchId) {
-return this.http.get(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/events')
+    return this.http.get(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/events')
       .map(result => result.json());
   }
 
   createSoccerMatchEvent(soccerMatchId, soccerMatchEvent) {
-    return this.http.post(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/events', {event : soccerMatchEvent})
+    return this.http.post(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/events', { event: soccerMatchEvent })
       .map(result => result.json());
   }
 
