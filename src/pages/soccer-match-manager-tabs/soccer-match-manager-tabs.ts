@@ -31,9 +31,6 @@ export class SoccerMatchManagerTabsPage extends BasePage {
 
   ngAfterViewInit() {
     console.log('ionViewDidLoad TabsPage');
-    
-    //this.superTabs.enableTabsSwipe(true)
-
   }
 
   ionViewWillEnter() {

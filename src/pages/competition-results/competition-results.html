@@ -1,11 +1,7 @@
 <ion-content>
   <ion-segment [(ngModel)]="showAll" color="primary">
-    <ion-segment-button value="0" (ionSelect)="loadForSoccerMatchesForTeam()">
-      Team
-    </ion-segment-button>
-    <ion-segment-button value="1" (ionSelect)="loadAllSoccerMatches()">
-      Alle
-    </ion-segment-button>
+    <ion-segment-button value="0" (ionSelect)="loadForSoccerMatchesForTeam()">Team</ion-segment-button>
+    <ion-segment-button value="1" (ionSelect)="loadAllSoccerMatches()">Alle</ion-segment-button>
   </ion-segment>
     <div *ngIf="showAll == 0">
         <ion-list>

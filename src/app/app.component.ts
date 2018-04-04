@@ -16,7 +16,7 @@ import { CompetitionManagerPage } from '../pages/competition-manager/competition
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = CompetitionManagerPage;
-  pages: Array<{ title: string, component: any, permissions?: string[] }>;
+  pages: Array<{ title: string, component: any, icon: string, permissions?: string[] }>;
   isApp: boolean;
 
   constructor(
@@ -34,10 +34,10 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Trainingen', component: TrainingsTabsPage, permissions: ["View_Trainings"]  },
-      { title: 'Trainingenbeheer', component: TrainingsManagerListPage, permissions: ["Manage_Trainings"] },
-      { title: 'Competities', component: CompetitionTabsPage, permissions: [] },
-      { title: 'Competitiebeheer', component: CompetitionManagerPage, permissions: [] }
+      { title: 'Trainingen', component: TrainingsTabsPage, icon: 'ri-football_cones', permissions: ["View_Trainings"]  },
+      { title: 'Trainingenbeheer', component: TrainingsManagerListPage, icon: 'ri-football_cones', permissions: ["Manage_Trainings"] },
+      { title: 'Competities', component: CompetitionTabsPage, icon: 'ri-football_stats_graphic', permissions: [] },
+      { title: 'Competitiebeheer', component: CompetitionManagerPage, icon: 'ri-football_stats_graphic', permissions: [] }
     ];
   }
 

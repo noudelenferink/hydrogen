@@ -21,10 +21,10 @@ export class SoccerMatchManagerPage extends BasePage {
     public soccerMatchService: SoccerMatchService) {
     super(injector);
     this.manageSoccerMatchForm = formBuilder.group({
-      homeGoals: ['', Validators.required],
-      awayGoals: ['', Validators.required],
-      isCanceled: ['', Validators.nullValidator],
-      fallbackDateTime: ['', Validators.nullValidator]
+      homeGoals: [{value: ''}, Validators.required],
+      awayGoals: [{value: ''}, Validators.required],
+      isCanceled: [{value: ''}, Validators.nullValidator],
+      fallbackDateTime: [{value: ''}, Validators.nullValidator]
     });
 
     this.soccerMatch = soccerMatchService.currentSoccerMatch;
@@ -37,7 +37,7 @@ export class SoccerMatchManagerPage extends BasePage {
   }
 
   loadSoccerMatch() {
-    this.soccerMatchService.getSoccerMatch(this.soccerMatchId)
+    this.soccerMatchService.getSoccerMatch(this.soccerMatch.SoccerMatchID)
       .subscribe(result => {
         this.soccerMatch = result;
       });
@@ -51,7 +51,7 @@ export class SoccerMatchManagerPage extends BasePage {
       FallbackDateTime: this.soccerMatch.FallbackDateTime
     }
 
-    this.soccerMatchService.updateSoccerMatch(this.soccerMatchId, updateData)
+    this.soccerMatchService.updateSoccerMatch(this.soccerMatch.SoccerMatchID, updateData)
       .subscribe(result => {
         this.loadSoccerMatch();
       });

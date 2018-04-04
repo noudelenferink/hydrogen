@@ -1,4 +1,14 @@
-<ion-tabs tabsPlacement="top">
-    <ion-tab [root]="trainingsOverviewRoot" tabTitle="Seizoensoverzicht"></ion-tab>
-    <ion-tab [root]="trainingsListRoot" tabTitle="Lijst"></ion-tab>
-</ion-tabs>
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Trainingen</ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <super-tabs toolbarColor="light" toolbarBackground="primary" indicatorColor="light">
+        <super-tab [root]="trainingsOverviewRoot" title="Seizoensoverzicht"></super-tab>
+        <super-tab [root]="trainingsListRoot" title="Lijst"></super-tab>
+    </super-tabs>
+</ion-content>

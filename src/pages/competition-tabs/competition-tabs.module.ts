@@ -7,6 +7,7 @@ import { CompetitionRankingPageModule } from '../competition-ranking/competition
 import { PipesModule } from '../../pipes/pipes.module';
 import { CompetitionRoundCreatePageModule } from '../competition-round-create/competition-round-create.module';
 import { CompetitionTeamCreatePageModule } from '../competition-team-create/competition-team-create.module';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CompetitionTeamCreatePageModule } from '../competition-team-create/comp
     IonicPageModule.forChild(CompetitionTabsPage),
     CompetitionResultsPageModule,
     CompetitionSchedulePageModule,
-    CompetitionRankingPageModule
+    CompetitionRankingPageModule,
+    SuperTabsModule
   ],
 })
 export class CompetitionTabsPageModule {}

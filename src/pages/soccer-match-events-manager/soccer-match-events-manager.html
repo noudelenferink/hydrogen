@@ -9,15 +9,15 @@
                 </div>
                 <div width-sm-90 width-md-90 width-lg-90 class="match-event">
                     <div>
-                        <span>{{getEventName(event.EventType)}}</span>
-                        <span>&nbsp;-&nbsp;</span>
+                        <i style="font-size:18px" [class]="getEventTypeIcon(event.EventType.EventTypeID)"></i>
+                        <span>&nbsp;</span>
                         <span>{{event.Player | playerFullName}}</span>
                         <span *ngIf="!event.Player">Onbekend</span>
                     </div>
                     <div *ngFor="let refEvent of event.References" class="ref-event">
-                        <span>{{getEventName(refEvent.EventType, true)}}</span>
+                        <i style="font-size:16px" [class]="getEventTypeIcon(refEvent.EventType.EventTypeID)"></i>
+                        <span>&nbsp;</span>
                         <div *ngIf="!refEvent.EventType.IsSamePlayerAsReference">
-                            <span>&nbsp;-&nbsp;</span>
                             <span>{{refEvent.Player | playerFullName}}</span>
                             <span *ngIf="!refEvent.Player">Onbekend</span>
                         </div>

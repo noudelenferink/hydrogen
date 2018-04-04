@@ -1,13 +1,12 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <div *ngIf="!auth.isAuthenticated()">
       <button ion-button block color="primary" (click)="auth.login()" *ngIf="isApp">Log In</button>
-      <button ion-button block color="secondary" (click)="auth.login()" *ngIf="!isApp">Log In</button>
     </div>
     <div *ngIf="auth.isAuthenticated()">
       <h2>{{ auth.user.name }}</h2>
@@ -15,7 +14,7 @@
     <ion-list>
       <ng-template ngFor let-p [ngForOf]="pages">
         <button menuClose ion-item (click)="openPage(p)" *ngIf="auth.isAuthorized(p.permissions)">
-          {{p.title}}
+          <i [class]="p.icon" style="font-size: 22px; margin-right: 5px; vertical-align: middle"></i>{{p.title}}
         </button>
       </ng-template>
     </ion-list>

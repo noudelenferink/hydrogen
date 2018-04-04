@@ -19,6 +19,9 @@
           <ion-datetime displayFormat="DD-MM-YYYY HH:mm" formControlName="fallbackDateTime" [(ngModel)]="soccerMatch.FallbackDateTime" [disabled]="soccerMatch.SoccerMatchStatusID === 'PLD'"></ion-datetime>
         </ion-item>
       </ion-list>
+      <div responsive>
+        <button width-sm-100 width-md-100 width-lg-100 ion-button (click)="saveSoccerMatch()">Opslaan</button>
+      </div>
     </form>
   </div>
 </ion-content>

@@ -42,6 +42,27 @@ export class SoccerMatchEventsManagerPage extends BasePage {
     return event.Team.TeamID == this.soccerMatch.AwayTeam.TeamID;
   }
 
+  getEventTypeIcon(eventTypeID) {
+    switch (eventTypeID) {
+      case 1:
+        return 'ri-soccer_ball';
+      case 2:
+        return 'ri-card';
+      case 3:
+        return 'ri-2nd_card';
+      case 4:
+        return '';
+      case 5:
+        return '';
+      case 6:
+        return '';
+      case 7:
+        return 'ri-soccer_shoe';
+      case 8:
+        return '';
+    }
+  }
+
   getEventName(eventType, isReference) {
     switch (eventType.EventTypeID) {
       case 2:
