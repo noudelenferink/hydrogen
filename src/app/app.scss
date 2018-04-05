@@ -21,7 +21,7 @@ $negative-color: #e30614;
 
 .app-root ion-menu .menu-inner {
 	.toolbar-md, .header-md, .content-md, .item-md {
-	background: color($colors, primary, base);
+	background: color($colors, dark, base);
 	color: color($colors, light, base);
 }
 }

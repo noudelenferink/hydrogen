@@ -1,12 +1,12 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar color="dark">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <div *ngIf="!auth.isAuthenticated()">
-      <button ion-button block color="primary" (click)="auth.login()" *ngIf="isApp">Log In</button>
+      <button ion-button block color="dark" (click)="auth.login()" *ngIf="isApp">Log In</button>
     </div>
     <div *ngIf="auth.isAuthenticated()">
       <h2>{{ auth.user.name }}</h2>
