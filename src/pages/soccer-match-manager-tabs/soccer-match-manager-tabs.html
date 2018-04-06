@@ -6,7 +6,7 @@
     <ion-title>Wedstrijd bewerken</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content disable-scroll>
   <ion-row>
     <div responsive class="team-header" *ngIf="soccerMatch">
       <div class="team" width-sm-50 width-md-50 width-lg-50>
@@ -19,10 +19,9 @@
       </div>
     </div>
   </ion-row>
-  <super-tabs style="height: 79%" toolbarColor="light" scrollTabs="true" toolbarBackground="primary" indicatorColor="light" *ngIf="tabsLoaded">
-    <super-tab [root]="general" title="Algemeen"></super-tab>
-    <super-tab [root]="formation" title="Opstelling" enabled="false"></super-tab>
-    <super-tab [root]="soccerMatchEvents" title="Gebeurtenissen"></super-tab>
-  </super-tabs>
-
+      <super-tabs style="height: 79%" toolbarColor="light" scrollTabs="true" toolbarBackground="primary" indicatorColor="light" *ngIf="tabsLoaded">
+          <super-tab [root]="general" title="Algemeen"></super-tab>
+          <super-tab [root]="formation" title="Opstelling" enabled="false"></super-tab>
+          <super-tab [root]="soccerMatchEvents" title="Gebeurtenissen"></super-tab>
+        </super-tabs>
 </ion-content>

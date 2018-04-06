@@ -9,13 +9,13 @@
                 </div>
                 <div width-sm-90 width-md-90 width-lg-90 class="match-event">
                     <div>
-                        <i style="font-size:18px" [class]="getEventTypeIcon(event.EventType.EventTypeID)"></i>
+                        <i style="font-size:18px" [class]="getEventTypeIcon(event.EventType)"></i>
                         <span>&nbsp;</span>
                         <span>{{event.Player | playerFullName}}</span>
                         <span *ngIf="!event.Player">Onbekend</span>
                     </div>
                     <div *ngFor="let refEvent of event.References" class="ref-event">
-                        <i style="font-size:16px" [class]="getEventTypeIcon(refEvent.EventType.EventTypeID)"></i>
+                        <i style="font-size:16px" [class]="getEventTypeIcon(refEvent.EventType)"></i>
                         <span>&nbsp;</span>
                         <div *ngIf="!refEvent.EventType.IsSamePlayerAsReference">
                             <span>{{refEvent.Player | playerFullName}}</span>
@@ -36,6 +36,4 @@
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-fab>
-    <ion-list>
-    </ion-list>
 </ion-content>

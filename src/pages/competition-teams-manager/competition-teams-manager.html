@@ -13,13 +13,10 @@
     </button>
   </ion-fab>
   <ion-list>
-    <ion-list-header>
-      <span>Teamnaam</span>
-    </ion-list-header>
-    <button ion-item *ngFor="let competitionTeam of competitionTeams | orderBy:'Date'" (click)="loadCompetitionTeam($event, competitionTeam)">
+    <button ion-item *ngFor="let competitionTeam of competitionTeams | orderBy:'Team.Name'">
         <app-team-logo item-left [teamId]="competitionTeam.Team.TeamID"></app-team-logo>
         <span>{{competitionTeam.Team.Name}}</span>
-        <span text-right>{{competitionTeam.DefaultStartTime}}</span>
+        <span item-right>{{competitionTeam.DefaultStartTime.slice(0, -3)}}</span>
     </button>
   </ion-list>
 </ion-content>

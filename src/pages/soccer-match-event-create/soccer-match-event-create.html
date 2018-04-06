@@ -20,7 +20,7 @@
       <ion-item *ngIf="eventTypes">
           <ion-label>Type</ion-label>
           <ion-select [(ngModel)]="eventData.eventTypeId" (ngModelChange)="changePrimaryEventType($event)">
-              <ion-option [value]="eventType.EventTypeID" *ngFor="let eventType of eventTypes | primaryOnly | orderBy:'Name'">{{getEventName(eventType)}}</ion-option>
+              <ion-option [value]="eventType.EventTypeID" *ngFor="let eventType of eventTypes | primaryOnly | orderBy:'Name'">{{eventType.Name}}</ion-option>
           </ion-select>
       </ion-item>
       <ion-item *ngIf="team.Players">
@@ -32,7 +32,7 @@
       </ion-item>
       <ng-container *ngFor="let referenceEvent of eventData.referenceEvents | orderBy:'Name'">
           <ion-item >
-              <ion-label>{{getEventName(referenceEvent, true)}}</ion-label>
+              <ion-label>{{referenceEvent.Name}}</ion-label>
               <ion-toggle [(ngModel)]="referenceEvent.isEnabled" [disabled]="referenceEvent.IsRequiredReference"></ion-toggle>
           </ion-item>
           <ng-container *ngIf="referenceEvent.isEnabled && !referenceEvent.IsSamePlayerAsReference">

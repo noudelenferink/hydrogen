@@ -15,4 +15,16 @@ page-soccer-match-events-manager {
             color: #666;
         }
     }
+
+    .yellow {
+        color: #e3e338;
+    }
+
+    .red {
+        color: $negative-color;
+    }
+
+    .green {
+        color: $positive-color;
+    }
 }
