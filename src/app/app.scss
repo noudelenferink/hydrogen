@@ -38,8 +38,14 @@ $negative-color: #e30614;
 	text-align: right;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 .current-team {
-	background-color: #d9e1fd;
+  background-color: #d9e1fd;
+  margin-top: -1px;
+  padding-top: 1px;
 }
 
 .points-deducted {

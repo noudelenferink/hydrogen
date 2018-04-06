@@ -7,13 +7,6 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div>
-    <ion-fab bottom right>
-      <button ion-fab (click)="createRound()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
-  </div>
   <ion-list>
     <ion-list-header>
       <span>Datum</span>
@@ -25,4 +18,9 @@
       <span item-right>{{competitionRound.NumPlayed}} / {{competitionRound.NumMatches}}</span>
     </button>
   </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="createRound()">
+        <ion-icon name="add"></ion-icon>
+    </button>
+</ion-fab>
 </ion-content>

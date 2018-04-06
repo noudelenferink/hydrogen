@@ -25,9 +25,9 @@
             <ion-card-content>
                 <ion-grid>
                     <ion-row *ngFor="let sm of x[1] | orderBy:'PlayTime'">
-                        <ion-col class="text-right" width-40>{{sm.HomeTeamName}}</ion-col>
-                        <ion-col class="text-center" width-20>{{sm.HomeGoals}} - {{sm.AwayGoals}}</ion-col>
-                        <ion-col class="text-left" width-40>{{sm.AwayTeamName}}</ion-col>
+                        <ion-col class="text-right" width-sm-40>{{sm.HomeTeamName}}</ion-col>
+                        <ion-col class="text-center text-bold" width-sm-20>{{sm.HomeGoals}} - {{sm.AwayGoals}}</ion-col>
+                        <ion-col class="text-left" width-sm-40>{{sm.AwayTeamName}}</ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-card-content>

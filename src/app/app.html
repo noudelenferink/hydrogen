@@ -9,12 +9,12 @@
       <button ion-button block color="primary" (click)="auth.login()" *ngIf="isApp">Log In</button>
     </div>
     <div *ngIf="auth.isAuthenticated()">
-      <h2>{{ auth.user.name }}</h2>
+      <h5>{{ auth.user.name }}</h5>
     </div>
     <ion-list>
       <ng-template ngFor let-p [ngForOf]="pages">
         <button menuClose ion-item (click)="openPage(p)" *ngIf="auth.isAuthorized(p.permissions)">
-          <i [class]="p.icon" style="font-size: 22px; margin-right: 5px; vertical-align: middle"></i>{{p.title}}
+          <i [class]="p.icon" style="font-size: 22px; margin-right: 10px; vertical-align: middle"></i>{{p.title}}
         </button>
       </ng-template>
     </ion-list>
