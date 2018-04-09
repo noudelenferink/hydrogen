@@ -8,6 +8,7 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { CompetitionRoundCreatePageModule } from '../competition-round-create/competition-round-create.module';
 import { CompetitionTeamCreatePageModule } from '../competition-team-create/competition-team-create.module';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { CompetitionStatsPageModule } from '../competition-stats/competition-stats.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
     CompetitionResultsPageModule,
     CompetitionSchedulePageModule,
     CompetitionRankingPageModule,
+    CompetitionStatsPageModule,
     SuperTabsModule
   ],
 })

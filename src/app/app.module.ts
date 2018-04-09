@@ -5,6 +5,7 @@ import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { Http, HttpModule } from '@angular/http';
 import { GLIonic2EnvConfigurationModule } from 'gl-ionic2-env-configuration';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MyApp } from './app.component';
 
@@ -58,6 +59,7 @@ export function getAuthHttp(http) {
     SuperTabsModule.forRoot(),
     GLIonic2EnvConfigurationModule,
     HttpModule,
+    BrowserAnimationsModule,
     PipesModule,
     TrainingsTabsPageModule,
     TrainingsManagerListPageModule,

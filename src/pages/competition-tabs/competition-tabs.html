@@ -7,9 +7,10 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <super-tabs toolbarColor="light" toolbarBackground="primary" indicatorColor="light">
+  <super-tabs toolbarColor="light" scrollTabs="true" toolbarBackground="primary" indicatorColor="light">
     <super-tab [root]="results" title="Uitslagen"></super-tab>
     <super-tab [root]="schedule" title="Programma"></super-tab>
     <super-tab [root]="ranking" title="Ranglijst"></super-tab>
+    <super-tab [root]="stats" title="Statistieken"></super-tab>
   </super-tabs>
 </ion-content>

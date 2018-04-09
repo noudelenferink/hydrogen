@@ -81,6 +81,11 @@ export class CompetitionService extends BaseService {
       .map(response => response.json() as Object);
   }
 
+  getCompetitionTeamStats(competitionId: number, teamId: number): Observable<Object> {
+    return this.http.get(this.apiUrl + '/competitions/' + competitionId + '/team-stats/' + teamId)
+      .map(response => response.json() as Object);
+  }
+
   getMatchdays(seasonId) : Observable<Object[]> {
     return this.http.get(this.apiUrl + '/seasons/' + seasonId + '/matchdays')
       .map(response => response.json() as Object[]);
