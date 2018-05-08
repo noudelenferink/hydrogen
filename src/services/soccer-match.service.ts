@@ -46,6 +46,11 @@ export class SoccerMatchService extends BaseService {
       .map(result => result.json());
   }
 
+  getFormations() {
+    return this.http.get(this.apiUrl + '/formations')
+      .map(result => result.json());
+  }
+
   deleteSoccerMatch(soccerMatchId: number) {
     return this.http.delete(this.apiUrl + '/soccer-matches/' + soccerMatchId)
       .map(response => response.json() as Object);
@@ -53,6 +58,26 @@ export class SoccerMatchService extends BaseService {
 
   getSoccerMatchEvents(soccerMatchId) {
     return this.http.get(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/events')
+      .map(result => result.json());
+  }
+
+  getSoccerMatchPlayers(soccerMatchId :number, teamId: number):Observable<Array<any>> {
+    return this.http.get(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/team/' + teamId + '/players')
+      .map(result => result.json());
+  }
+
+  saveSoccerMatchPlayers(soccerMatchId :number, teamId: number, playerIds: Array<number>) {
+    return this.http.post(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/team/' + teamId + '/players', { playerIds: playerIds })
+      .map(result => result.json());
+  }
+
+  getSoccerMatchLineups(soccerMatchId :number) {
+    return this.http.get(this.apiUrl + '/soccer-matches/' + soccerMatchId + '/lineups')
+      .map(result => result.json());
+  }
+
+  saveSoccerMatchLineup(soccerMatchId: number, homeAway: string, lineup) {
+    return this.http.post(this.apiUrl + '/soccer-matches/' + soccerMatchId  + '/lineup/' + homeAway, { lineup: lineup})
       .map(result => result.json());
   }
 

@@ -47,7 +47,6 @@ export class SoccerMatchEventCreatePage extends BasePage {
     this.playerService.getPlayers(this.currentSeason.Id, this.team.TeamID).subscribe(result => {
       this.team.Players = result;
     });
-
   }
 
   getEventTypes() {

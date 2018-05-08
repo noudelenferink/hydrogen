@@ -5,6 +5,7 @@ import { SoccerMatchEventsManagerPage } from '../soccer-match-events-manager/soc
 import { BasePage } from '../base/base';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { SuperTabs } from 'ionic2-super-tabs';
+import { SoccerMatchLineupManagerPage } from '../soccer-match-lineup-manager/soccer-match-lineup-manager';
 
 @IonicPage()
 @Component({
@@ -13,7 +14,7 @@ import { SuperTabs } from 'ionic2-super-tabs';
 })
 export class SoccerMatchManagerTabsPage extends BasePage {
   general: any = SoccerMatchManagerPage;
-  formation: any = SoccerMatchEventsManagerPage;
+  lineup: any = SoccerMatchLineupManagerPage;
   soccerMatchEvents: any = SoccerMatchEventsManagerPage;
 
   @ViewChild(SuperTabs) superTabs: SuperTabs;

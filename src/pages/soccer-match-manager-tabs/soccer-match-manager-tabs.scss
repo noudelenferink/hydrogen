@@ -14,7 +14,7 @@ page-soccer-match-manager-tabs {
         }
     }
 
-    super-tab  div.scroll-content > * {
+    super-tab div.scroll-content > *:last-child {
         margin-bottom: 15%;
     }
 }

@@ -6,7 +6,7 @@ import { Http, HttpModule } from '@angular/http';
 import { GLIonic2EnvConfigurationModule } from 'gl-ionic2-env-configuration';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SelectSearchableModule } from 'ionic-select-searchable';
 import { MyApp } from './app.component';
 
 import { TrainingsTabsPageModule } from '../pages/trainings-tabs/trainings-tabs.module';
@@ -60,6 +60,7 @@ export function getAuthHttp(http) {
     GLIonic2EnvConfigurationModule,
     HttpModule,
     BrowserAnimationsModule,
+    SelectSearchableModule,
     PipesModule,
     TrainingsTabsPageModule,
     TrainingsManagerListPageModule,
