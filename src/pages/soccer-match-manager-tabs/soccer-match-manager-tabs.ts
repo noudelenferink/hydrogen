@@ -1,5 +1,5 @@
 import { Component, Injector, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, Events } from 'ionic-angular';
 import { SoccerMatchManagerPage } from '../soccer-match-manager/soccer-match-manager';
 import { SoccerMatchEventsManagerPage } from '../soccer-match-events-manager/soccer-match-events-manager';
 import { BasePage } from '../base/base';

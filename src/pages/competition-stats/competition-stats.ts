@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { CompetitionService } from '../../services/competition.service';
 import { BasePage } from '../base/base';
 

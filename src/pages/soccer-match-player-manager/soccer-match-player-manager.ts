@@ -1,11 +1,8 @@
-import { Component, Injector, PipeTransform, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, Injector } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { PlayerService } from '../../services/player-service';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { NgZone } from '@angular/core';
 import { SelectSearchable}  from 'ionic-select-searchable';
 import { PlayerFullNamePipe } from '../../pipes/player-full-name/player-full-name';
 /**
@@ -29,7 +26,6 @@ export class SoccerMatchPlayerManagerPage extends BasePage {
 
   constructor(
     injector: Injector,
-    private changeDetectorRef: ChangeDetectorRef,
     public soccerMatchService: SoccerMatchService,
     public playerService: PlayerService,
     private playerFullNamePipe: PlayerFullNamePipe) {

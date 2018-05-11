@@ -10,7 +10,7 @@ export class PlayerService extends BaseService {
 
   constructor(
     public http: Http,
-    private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
+    envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
   ) {
     super(envConfiguration);
   }

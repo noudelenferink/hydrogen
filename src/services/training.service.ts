@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -15,9 +14,8 @@ import { TrainingCreateModel } from '../models/training-create-model';
 @Injectable()
 export class TrainingService extends BaseService {
 	constructor(
-		private authHttp: AuthHttp,
 		private http: Http,
-		private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
+		envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
 	) {
 		super(envConfiguration);
 	}

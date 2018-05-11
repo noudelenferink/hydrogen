@@ -8,13 +8,18 @@
     <div *ngIf="!auth.isAuthenticated()">
       <button ion-button block color="primary" (click)="auth.login()" *ngIf="isApp">Log In</button>
     </div>
-    <div *ngIf="auth.isAuthenticated()">
-      <h5>{{ auth.user.name }}</h5>
-    </div>
+    <ion-list *ngIf="auth.isAuthenticated()">
+      <ion-item>
+        <h5 style="display: inline-block">{{ auth.user.name }}</h5>
+        <button ion-button clear icon-only (click)="auth.logout()" item-end>
+          <ion-icon name="exit"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
     <ion-list>
-      <ng-template ngFor let-p [ngForOf]="pages">
-        <button menuClose ion-item (click)="openPage(p)" *ngIf="auth.isAuthorized(p.permissions)">
-          <i [class]="p.icon" style="font-size: 22px; margin-right: 10px; vertical-align: middle"></i>{{p.title}}
+      <ng-template ngFor let-p [ngForOf]="menuItems | orderBy:['IsManager', 'Title']">
+        <button menuClose ion-item (click)="openPage(p)" *ngIf="auth.isAuthorized(p.Permissions)">
+          <i [class]="p.Icon" style="font-size: 22px; margin-right: 10px; vertical-align: middle"></i>{{p.Title}}
         </button>
       </ng-template>
     </ion-list>

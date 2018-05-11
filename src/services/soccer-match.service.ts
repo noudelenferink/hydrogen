@@ -1,6 +1,4 @@
-import { Storage } from '@ionic/storage';
-import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 
@@ -12,7 +10,6 @@ import { BaseService } from './base.service';
 export class SoccerMatchService extends BaseService {
   public currentSoccerMatch: any;
   constructor(
-    private authHttp: AuthHttp,
     private http: Http,
     private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
   ) {

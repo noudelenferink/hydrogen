@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { AlertController, NavController, LoadingController, ViewController, ModalController, App, ToastController, Toast, NavParams } from "ionic-angular";
+import { AlertController, NavController, LoadingController, ViewController, ModalController, App, ToastController, NavParams } from "ionic-angular";
 import { SessionService } from '../../services/session.service';
 import { AuthService } from '../../services/auth.service';
 //import { Storage} from "@ionic/storage";

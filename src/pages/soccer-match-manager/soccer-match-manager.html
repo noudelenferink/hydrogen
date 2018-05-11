@@ -11,6 +11,10 @@
           <ion-input type="number" min="0" [(ngModel)]="soccerMatch.AwayGoals" placeholder="-" formControlName="awayGoals" text-right></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label>Notitie</ion-label>
+          <ion-input type="text" formControlName="note" [(ngModel)]="soccerMatch.Note"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label>Afgelast</ion-label>
           <ion-toggle [(ngModel)]="soccerMatch.IsCanceled" formControlName="isCanceled" [disabled]="soccerMatch.SoccerMatchStatusID === 'PLD'"></ion-toggle>
         </ion-item>

@@ -1,4 +1,3 @@
-import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
@@ -16,8 +15,7 @@ export class CompetitionService extends BaseService {
 
   constructor(
     private http: Http,
-    private authHttp: AuthHttp,
-    private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
+    envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
   ) {
     super(envConfiguration);
     this.teamLogos = [];

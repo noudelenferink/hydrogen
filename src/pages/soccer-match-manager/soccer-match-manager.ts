@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, Events } from 'ionic-angular';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BasePage } from '../base/base';
@@ -23,6 +23,7 @@ export class SoccerMatchManagerPage extends BasePage {
     this.manageSoccerMatchForm = formBuilder.group({
       homeGoals: [{value: ''}, Validators.required],
       awayGoals: [{value: ''}, Validators.required],
+      note: [{value: ''}, Validators.nullValidator],
       isCanceled: [{value: ''}, Validators.nullValidator],
       fallbackDateTime: [{value: ''}, Validators.nullValidator]
     });
@@ -47,6 +48,7 @@ export class SoccerMatchManagerPage extends BasePage {
     var updateData = {
       HomeGoals: this.soccerMatch.HomeGoals == '' ? null : this.soccerMatch.HomeGoals,
       AwayGoals: this.soccerMatch.AwayGoals == '' ? null : this.soccerMatch.AwayGoals,
+      Note: this.soccerMatch.Note == '' ? null : this.soccerMatch.Note,
       IsCanceled: this.soccerMatch.isCanceled,
       FallbackDateTime: this.soccerMatch.FallbackDateTime
     }

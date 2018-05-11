@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, Events } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { PlayerService } from '../../services/player-service';

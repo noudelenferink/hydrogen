@@ -1,7 +1,6 @@
 import { Component, Injector } from '@angular/core';
 
 import { TrainingService } from '../../services/training.service';
-import { SessionService } from '../../services/session.service';
 import { Observable } from 'rxjs/Observable';
 import { Player } from '../../models/player';
 import { PlayerTabsPage } from '../player-tabs/player-tabs';

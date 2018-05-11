@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
-import { AuthService } from '../../services/auth.service';
+import { IonicPage } from 'ionic-angular';
 import { CompetitionRoundsManagerPage } from '../competition-rounds-manager/competition-rounds-manager';
 import { CompetitionTeamsManagerPage } from '../competition-teams-manager/competition-teams-manager';
 

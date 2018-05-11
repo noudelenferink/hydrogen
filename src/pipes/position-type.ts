@@ -4,7 +4,7 @@ import { PipeTransform, Pipe } from '@angular/core';
     name: 'positionType',
     pure: false
 })
-export class CallbackPipe implements PipeTransform {
+export class PositionTypePipe implements PipeTransform {
     transform(input, path, positionTypeId) {
         return input.filter(positionType => {
             if (path) {
