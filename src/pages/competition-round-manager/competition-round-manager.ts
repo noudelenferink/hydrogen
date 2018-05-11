@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
 import { CompetitionService } from '../../services/competition.service';
 import { SoccerMatchService } from '../../services/soccer-match.service';
 import { SoccerMatchCreatePage } from '../soccer-match-create/soccer-match-create';
+import { SoccerMatchManagerTabsPage } from '../soccer-match-manager-tabs/soccer-match-manager-tabs';
+import { BasePage } from '../base/base';
 
 @IonicPage()
 @Component({
   selector: 'page-competition-round-manager',
   templateUrl: 'competition-round-manager.html',
 })
-export class CompetitionRoundManagerPage {
+export class CompetitionRoundManagerPage extends BasePage {
   competitionId: number;
   competitionRoundId: number;
   competitionRound: any;
 
   constructor(
+    injector: Injector,
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -25,10 +28,9 @@ export class CompetitionRoundManagerPage {
     public session: SessionService,
     public competitionService: CompetitionService,
     public soccerMatchService: SoccerMatchService) {
+    super(injector);
     this.competitionId = this.navParams.get('competitionId');
     this.competitionRoundId = this.navParams.get('competitionRoundId');
-
-    this.loadCompetitionRound();
   }
 
   loadCompetitionRound() {
@@ -37,42 +39,46 @@ export class CompetitionRoundManagerPage {
   }
 
   loadSoccerMatch(event, soccerMatchId) {
-    // this.navCtrl.push(SoccerMatchManagerPage, {
-    //   soccerMatchId: soccerMatchId
-    // });
+    this.app.getRootNav().push(SoccerMatchManagerTabsPage, {
+      soccerMatchId: soccerMatchId
+    });
   }
 
   createSoccerMatch() {
-    var usedTeams = [].concat.apply([], this.competitionRound.map(function(sm) { return [sm.HomeTeam.TeamID, sm.AwayTeam.TeamID]}));
-    let modal = this.modalCtrl.create(SoccerMatchCreatePage, {competitionId: this.competitionId, competitionRoundId: this.competitionRoundId, usedTeams: usedTeams});
+    var usedTeams = [].concat.apply([], this.competitionRound.map(function (sm) { return [sm.HomeTeam.TeamID, sm.AwayTeam.TeamID] }));
+    let modal = this.modalCtrl.create(SoccerMatchCreatePage, { competitionId: this.competitionId, competitionRoundId: this.competitionRoundId, usedTeams: usedTeams });
     modal.present();
     modal.onDidDismiss(success => {
-    if(success) {
-      this.loadCompetitionRound();
-    }
+      if (success) {
+        this.loadCompetitionRound();
+      }
     })
   }
 
-promptDelete(soccerMatch) {
+  promptDelete(soccerMatch) {
     let confirm = this.alertCtrl.create({
       title: 'Wedstrijd verwijderen',
       message: 'Weet je zeker dat je de geselecteerde wedstrijd wilt verwijderen?',
       buttons: [
         {
           text: 'Annuleren',
-          handler: () => {}
+          handler: () => { }
         },
         {
           text: 'Verwijderen',
           handler: () => {
             this.soccerMatchService.deleteSoccerMatch(soccerMatch.SoccerMatchID).subscribe(result => {
-                this.loadCompetitionRound();
+              this.loadCompetitionRound();
             })
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  ionViewWillEnter() {
+    this.loadCompetitionRound();
   }
 
   ionViewDidLoad() {

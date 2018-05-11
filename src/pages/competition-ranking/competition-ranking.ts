@@ -1,34 +1,32 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, Injector } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 import { CompetitionService } from '../../services/competition.service';
-import { SessionService } from '../../services/session.service';
+import { BasePage } from '../base/base';
 
 IonicPage()
 @Component({
   selector: 'page-competition-ranking',
   templateUrl: 'competition-ranking.html',
 })
-export class CompetitionRankingPage {
-	currentCompetition: any;
-  currentTeam: any;
+export class CompetitionRankingPage extends BasePage {
 	competitionRanking: any[];
 
 	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams,
-		public competitionService: CompetitionService,
-		public session: SessionService) {
-
-		this.currentTeam = this.session.getCurrentTeam();
-		this.currentCompetition = this.session.getCurrentCompetition();
+		injector: Injector,
+		public competitionService: CompetitionService) {
+		super(injector);
 	}
 
 	loadCompetitionRanking() {
-		this.competitionService.getRanking(this.currentCompetition.Id).subscribe(function(result)  {
+		this.competitionService.getRanking(this.currentCompetition.Id).subscribe(result =>  {
 			this.competitionRanking = result;
-			this.competitionRanking.forEach(t => t.isCurrentTeam = t.TeamID == this.currentTeam.Id);
+			this.competitionRanking.forEach(t => {t.isCurrentTeam = t.TeamID == this.currentTeam.Id});
 		})
 	}
+
+	ionViewWillEnter() {
+    this.loadCompetitionRanking();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CompetitionRankingPage');

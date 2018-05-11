@@ -1,0 +1,49 @@
+<!--
+  Generated template for the SoccerMatchPlayerManagerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Selectie bewerken</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="saveSoccerMatchPlayers()">
+        <span>OPSLAAN</span>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list *ngIf="soccerMatchPlayers">
+    <ion-item-group>
+      <ion-item-divider color="light">Team</ion-item-divider>
+      <ion-item *ngFor="let player of soccerMatchPlayers | guestPlayer:false | orderBy:['FirstName', 'Surname']">
+        <ion-label>{{player | playerFullName}}</ion-label>
+        <ion-toggle item-right [(ngModel)]="player.HasAttended"></ion-toggle>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider color="light">Gastspelers</ion-item-divider>
+      <ion-item *ngFor="let player of soccerMatchPlayers | guestPlayer:true | orderBy:['FirstName', 'Surname']">
+        <ion-label>{{player | playerFullName}}</ion-label>
+        <button ion-button color="dark" clear icon-only (click)="removePlayer(player)" item-right>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item>
+      <ion-item>
+        <select-searchable title="Gastspeler" [(ngModel)]="playerToAdd" itemTextField="FullName" [canSearch]="true"
+          (onSearch)="findPlayers($event)">
+        </select-searchable>
+        <button ion-button color="dark" clear icon-only (click)="addPlayer(playerToAdd)" [disabled]="playerToAdd == null" item-right>
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

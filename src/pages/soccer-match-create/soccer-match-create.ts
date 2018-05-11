@@ -52,7 +52,10 @@ export class SoccerMatchCreatePage {
 
   getTeams() {
     this.competitionService.getCompetitionTeams(this.competitionId).subscribe(result => {
-      this.teams = result;
+      this.teams = result.map(ct => 
+        ct.Team
+      );
+      console.log(this.teams);
     })
   }
 

@@ -1,4 +1,5 @@
-<ion-header><ion-navbar>
+<ion-header>
+  <ion-navbar color="primary">
     <ion-title>Competities</ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -6,9 +7,10 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-<ion-tabs tabsPlacement="top">
-    <ion-tab [root]="results" tabTitle="Uitslagen"></ion-tab>
-    <ion-tab [root]="schedule" tabTitle="Programma"></ion-tab>
-    <ion-tab [root]="ranking" tabTitle="Ranglijst"></ion-tab>
-</ion-tabs>
+  <super-tabs toolbarColor="light" scrollTabs="true" toolbarBackground="primary" indicatorColor="light">
+    <super-tab [root]="results" title="Uitslagen"></super-tab>
+    <super-tab [root]="schedule" title="Programma"></super-tab>
+    <super-tab [root]="ranking" title="Ranglijst"></super-tab>
+    <super-tab [root]="stats" title="Statistieken"></super-tab>
+  </super-tabs>
 </ion-content>

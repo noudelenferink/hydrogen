@@ -10,7 +10,7 @@ export class PlayerService extends BaseService {
 
   constructor(
     public http: Http,
-    private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
+    envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
   ) {
     super(envConfiguration);
   }
@@ -22,6 +22,11 @@ export class PlayerService extends BaseService {
   
   getPlayerTrainings(playerId: number, seasonId: number) {
     return this.http.post(this.apiUrl + '/players/' + playerId + '/trainings', { seasonID: seasonId })
+      .map(result => result.json());
+  }
+
+  findPlayers(searchText: string, seasonId: number, teamsToExclude: Array<number>) {
+    return this.http.post(this.apiUrl + '/players/find', { searchText: searchText, seasonID: seasonId, teamsToExclude: teamsToExclude })
       .map(result => result.json());
   }
 }

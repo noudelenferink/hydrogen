@@ -1,4 +1,3 @@
-import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
@@ -16,8 +15,7 @@ export class CompetitionService extends BaseService {
 
   constructor(
     private http: Http,
-    private authHttp: AuthHttp,
-    private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
+    envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
   ) {
     super(envConfiguration);
     this.teamLogos = [];
@@ -38,7 +36,7 @@ export class CompetitionService extends BaseService {
       .map(response => response.json() as Object[]);
   }
 
-  getCompetitionTeams(competitionId): Observable<Object[]> {
+  getCompetitionTeams(competitionId): Observable<any[]> {
     return this.http.get(this.apiUrl + '/competitions/' + competitionId + '/teams')
       .map(response => response.json() as Object[]);
   }
@@ -81,18 +79,23 @@ export class CompetitionService extends BaseService {
       .map(response => response.json() as Object);
   }
 
+  getCompetitionTeamStats(competitionId: number, teamId: number): Observable<Object> {
+    return this.http.get(this.apiUrl + '/competitions/' + competitionId + '/team-stats/' + teamId)
+      .map(response => response.json() as Object);
+  }
+
   getMatchdays(seasonId) : Observable<Object[]> {
     return this.http.get(this.apiUrl + '/seasons/' + seasonId + '/matchdays')
       .map(response => response.json() as Object[]);
   }
 
-  retrieveTeamLogo(teamId) {
-    return this.http.get(this.apiUrl + '/teams/' + teamId + '/logo')
-      .map(image => 'data:image/png;base64,' + image.text());
-  }
-
   createCompetitionRound(competitionRound) {
     return this.http.post(this.apiUrl + '/competitions/' + competitionRound.CompetitionID + '/competition-rounds', {competitionRound: competitionRound})
+      .map(result => result.json());
+  }
+
+  createCompetitionTeam(competitionTeam) {
+    return this.http.post(this.apiUrl + '/competitions/' + competitionTeam.CompetitionID + '/competition-teams', {competitionTeam: competitionTeam})
       .map(result => result.json());
   }
 }
