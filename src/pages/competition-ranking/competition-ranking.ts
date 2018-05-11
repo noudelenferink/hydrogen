@@ -1,21 +1,31 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, Injector } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+import { CompetitionService } from '../../services/competition.service';
+import { BasePage } from '../base/base';
 
-/**
- * Generated class for the CompetitionRankingPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
-@IonicPage()
+IonicPage()
 @Component({
   selector: 'page-competition-ranking',
   templateUrl: 'competition-ranking.html',
 })
-export class CompetitionRankingPage {
+export class CompetitionRankingPage extends BasePage {
+	competitionRanking: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(
+		injector: Injector,
+		public competitionService: CompetitionService) {
+		super(injector);
+	}
+
+	loadCompetitionRanking() {
+		this.competitionService.getRanking(this.currentCompetition.Id).subscribe(result =>  {
+			this.competitionRanking = result;
+			this.competitionRanking.forEach(t => {t.isCurrentTeam = t.TeamID == this.currentTeam.Id});
+		})
+	}
+
+	ionViewWillEnter() {
+    this.loadCompetitionRanking();
   }
 
   ionViewDidLoad() {

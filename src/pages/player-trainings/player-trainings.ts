@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import { TrainingService } from '../../services/training.service';
 import { SessionService } from '../../services/session.service';
 import { PlayerService } from '../../services/player-service';
 import { TrainingDetailPage } from '../training-detail/training-detail';

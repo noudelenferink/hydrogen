@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class SessionService {
 
-  constructor(private auth: AuthService) { }
+  constructor() { }
   
     public getCurrentSeason() {
       return {Id: 5, Name: '2017/2018'};

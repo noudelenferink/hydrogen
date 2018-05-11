@@ -9,13 +9,15 @@ import { TrainingsManagerListPage} from '../pages/trainings-manager-list/trainin
 
 import Auth0Cordova from '@auth0/cordova';
 import { AuthService } from '../services/auth.service';
+import { CompetitionManagerPage } from '../pages/competition-manager/competition-manager';
+import { MenuItem } from '../models/menu-item';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = TrainingsTabsPage;
-  pages: Array<{ title: string, component: any, permissions?: string[] }>;
+  rootPage: any = CompetitionTabsPage;
+  menuItems: Array<MenuItem>;
   isApp: boolean;
 
   constructor(
@@ -32,10 +34,11 @@ export class MyApp {
 
     this.initializeApp();
 
-    this.pages = [
-      { title: 'Trainingen', component: TrainingsTabsPage, permissions: ["View_Trainings"]  },
-      { title: 'Trainingenbeheer', component: TrainingsManagerListPage, permissions: ["Manage_Trainings"] },
-      // { title: 'Competities', component: CompetitionTabsPage, permissions: [] },
+    this.menuItems = [
+      new MenuItem('Trainingen', TrainingsTabsPage, 'ri-football_cones', false, ["View_Trainings"]),
+      new MenuItem('Trainingenbeheer', TrainingsManagerListPage, 'ri-football_cones', true, ["Manage_Trainings"]),
+      new MenuItem('Competities', CompetitionTabsPage, 'ri-football_stats_graphic', false, ["View_Competitions"]),
+      new MenuItem('Competitiebeheer', CompetitionManagerPage, 'ri-football_stats_graphic', true, ["Manage_Competitions"])
     ];
   }
 
@@ -45,13 +48,12 @@ export class MyApp {
       this.splashScreen.hide();
 
       (<any>window).handleOpenURL = (url) => {
-        console.log(url);
         Auth0Cordova.onRedirectUri(url);
       };
     });
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.Component);
   }
 }

@@ -1,20 +1,9 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Seizoensoverzicht</ion-title>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-  </ion-navbar>
-
-</ion-header>
-
 <ion-content>
   <ion-refresher (ionRefresh)="refreshSeasonOverview($event)" pullMin="200" pullMax="pullMin + 60">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Verversen" refreshingSpinner="crescent" refreshingText="Bezig met verversen..."></ion-refresher-content>
   </ion-refresher>
-  <ion-list *ngIf="trainingOverview">
-    <ion-item *ngIf="trainingOverview.length === 0">
+  <ion-list>
+    <ion-item *ngIf="trainingOverview && trainingOverview.length === 0">
       <div>Er is (nog) geen seizoensoverzicht beschikbaar.</div>
     </ion-item>
     <ion-item *ngFor="let playerAttendence of trainingOverview | orderBy:'-AttendencePercentage'" (click)="loadPlayer($event, playerAttendence.Player)">

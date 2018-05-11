@@ -1,7 +1,6 @@
 import { Component, Injector } from '@angular/core';
 
 import { TrainingService } from '../../services/training.service';
-import { SessionService } from '../../services/session.service';
 import { Observable } from 'rxjs/Observable';
 import { Player } from '../../models/player';
 import { PlayerTabsPage } from '../player-tabs/player-tabs';
@@ -23,7 +22,7 @@ export class TrainingsOverviewPage extends BasePage {
   }
 
   refreshSeasonOverview(refresher) {
-    this.loadSeasonOverview().subscribe(result => refresher.complete());
+    this.loadSeasonOverview().subscribe(null, null, () => refresher.complete());
   }
 
   loadSeasonOverview() {
@@ -33,6 +32,15 @@ export class TrainingsOverviewPage extends BasePage {
           this.trainingOverview = result;
           observer.next();
           observer.complete()
+        }, error => {
+          let toast = this.toastCtrl.create({
+            message: 'Het ophalen van het seizoensoverzicht is mislukt.',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          observer.complete();
+                  
         });
     })
   }
@@ -47,9 +55,10 @@ export class TrainingsOverviewPage extends BasePage {
     let loading = this.loadingCtrl.create({
       content: 'Laden...'
     });
-    
+
     loading.present();
-    this.loadSeasonOverview().subscribe(result => loading.dismiss());
+    this.loadSeasonOverview()
+      .subscribe(null, null, () => loading.dismiss());
   }
 
   ionViewDidLoad() {

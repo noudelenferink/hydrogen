@@ -1,18 +1,27 @@
-<!--
-  Generated template for the CompetitionRankingPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>competition-ranking</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+    <ion-list>
+        <ion-list-header style="padding-right: 8px">
+            <span class="text-right" width-sm-10 width-md-5 width-lg-5 item-left>##</span>
+            <span>Team</span>
+            <span class="text-center" width-sm-10 width-md-10 width-lg-10 item-right>G</span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right>W</span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right>GL</span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right>V</span>
+            <span class="text-center" width-sm-10 width-md-10 width-lg-10 item-right><b>P</b></span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right><b>PM</b></span>
+            <span class="text-center" width-sm-10 width-md-10 width-lg-10 item-right>+/-</span>
+        </ion-list-header>
+        
+        <ion-item *ngFor="let rankedTeam of competitionRanking | orderBy:'Rank'" [ngClass]="{'current-team': rankedTeam.isCurrentTeam}">
+            <span class="text-right" width-sm-10 width-md-5 width-lg-5 item-left>{{ rankedTeam.Rank }}</span>
+            <span>{{ rankedTeam.TeamName }}</span>
+            <span class="text-center" width-sm-10 width-md-10 width-lg-10 item-right>{{ rankedTeam.Played }}</span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right>{{ rankedTeam.Wins }}</span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right>{{ rankedTeam.Draws }}</span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right>{{ rankedTeam.Loses }}</span>
+            <span class="text-center" width-sm-10 width-md-10 width-lg-10 item-right [ngClass]="{'points-deducted': rankedTeam.PointsDeducted > 0}"><b>{{ rankedTeam.Points }}</b></span>
+            <span class="text-center" hide-sm width-md-10 width-lg-10 item-right>{{ rankedTeam.PointsDeducted }}</span>
+            <span class="text-center" width-sm-10 width-md-10 width-lg-10 item-right>{{ rankedTeam.Diff }}</span>
+        </ion-item>
+    </ion-list>
 </ion-content>

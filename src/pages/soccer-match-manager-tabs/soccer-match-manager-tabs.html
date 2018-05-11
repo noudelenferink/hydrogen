@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Wedstrijd bewerken</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content disable-scroll>
+  <ion-row>
+    <div responsive class="team-header" *ngIf="soccerMatch">
+      <div class="team" width-sm-50 width-md-50 width-lg-50>
+        <app-team-logo item-left [teamId]="soccerMatch.HomeTeam.TeamID" width="60px" height="60px"></app-team-logo>
+        <span>{{soccerMatch.HomeTeam.Name}}</span>
+      </div>
+      <div class="team" width-sm-50 width-md-50 width-lg-50>
+        <app-team-logo item-right [teamId]="soccerMatch.AwayTeam.TeamID" width="60px" height="60px"></app-team-logo>
+        <span>{{soccerMatch.AwayTeam.Name}}</span>
+      </div>
+    </div>
+  </ion-row>
+      <super-tabs style="height: 79%" toolbarColor="light" scrollTabs="true" toolbarBackground="primary" indicatorColor="light" *ngIf="tabsLoaded">
+          <super-tab [root]="general" title="Algemeen"></super-tab>
+          <super-tab [root]="lineup" title="Opstelling" enabled="false"></super-tab>
+          <super-tab [root]="soccerMatchEvents" title="Gebeurtenissen"></super-tab>
+        </super-tabs>
+</ion-content>

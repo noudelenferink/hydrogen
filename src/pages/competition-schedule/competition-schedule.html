@@ -1,18 +1,39 @@
-<!--
-  Generated template for the CompetitionSchedulePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>competition-schedule</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+  <ion-segment [(ngModel)]="showAll" color="primary">
+    <ion-segment-button value="0" (ionSelect)="loadForSoccerMatchesForTeam()">
+      Team
+    </ion-segment-button>
+    <ion-segment-button value="1" (ionSelect)="loadAllSoccerMatches()">
+      Alle
+    </ion-segment-button>
+  </ion-segment>
+    <div *ngIf="showAll == 0">
+        <ion-list>
+            <ion-item *ngFor="let sm of competitionScheduleTeam | orderBy:'PlayDate'" [ngClass]="{'current-team': sm.isCurrentTeam}">
+                <app-team-logo item-left [teamId]="sm.OpponentTeamID"></app-team-logo>
+                <h2>{{sm.OpponentTeamName}}</h2>
+                <p><b>{{sm.IsHomeMatch ? 'T' : 'U' }}</b> | Speelronde {{sm.RoundNumber }}</p>
+                <div item-right>
+                    <h2 style="text-align: center">{{sm.PlayTime.slice(0, -3)}}</h2>
+                    <p style="text-align: center">{{sm.PlayDate | date:'dd MMM'}}</p>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="showAll == 1">
+        <ion-card *ngFor="let x of competitionSchedule">
+            <ion-card-header>
+                {{x[0] | date:'dd MMM'}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-grid>
+                    <ion-row *ngFor="let sm of x[1] | orderBy:'PlayTime'">
+                        <ion-col class="text-right" width-sm-40>{{sm.HomeTeamName}}</ion-col>
+                        <ion-col class="text-center text-bold" width-sm-20>{{sm.PlayTime.slice(0, -3)}}</ion-col>
+                        <ion-col class="text-left" width-sm-40>{{sm.AwayTeamName}}</ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card-content>
+        </ion-card>
+    </div>
 </ion-content>
