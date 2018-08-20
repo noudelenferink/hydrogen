@@ -1,16 +1,18 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { CompetitionTabsPage } from '../pages/competition-tabs/competition-tabs';
 import { TrainingsTabsPage } from '../pages/trainings-tabs/trainings-tabs';
-import { TrainingsManagerListPage} from '../pages/trainings-manager-list/trainings-manager-list'
+import { TrainingsManagerListPage } from '../pages/trainings-manager-list/trainings-manager-list'
 
 import Auth0Cordova from '@auth0/cordova';
 import { AuthService } from '../services/auth.service';
+import { FcmProvider } from '../providers/fcm/fcm';
 import { CompetitionManagerPage } from '../pages/competition-manager/competition-manager';
 import { MenuItem } from '../models/menu-item';
+import { tap } from 'rxjs/operators';
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,6 +26,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
+    public fcm: FcmProvider,
+    public toastCtrl: ToastController,
     public auth: AuthService) {
 
     if (this.platform.is('core') || this.platform.is('mobileweb')) {
@@ -50,6 +54,27 @@ export class MyApp {
       (<any>window).handleOpenURL = (url) => {
         Auth0Cordova.onRedirectUri(url);
       };
+    });
+
+    this.platform.ready().then(() => {
+      if (this.isApp) {
+        // Get a FCM token
+        this.fcm.getToken()
+
+        // Listen to incoming messages
+        this.fcm.listenToNotifications().pipe(
+          tap(msg => {
+            // show a toast
+            var messageBody = msg['body'];
+            const toast = this.toastCtrl.create({
+              message: messageBody,
+              duration: 3000
+            });
+            toast.present();
+          })
+        )
+          .subscribe();
+      }
     });
   }
 

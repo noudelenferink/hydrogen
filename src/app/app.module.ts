@@ -19,6 +19,11 @@ import { ComponentsModule } from '../components/components.module';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { Firebase } from '@ionic-native/firebase';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 // Services
 import { AuthService } from '../services/auth.service';
 import { SessionService } from '../services/session.service';
@@ -37,6 +42,7 @@ import { CompetitionResultsPageModule } from '../pages/competition-results/compe
 import { SoccerMatchService } from '../services/soccer-match.service';
 import { TeamService } from '../services/team.service';
 import { TempServiceProvider } from '../providers/temp-service/temp-service';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -49,6 +55,15 @@ export function getAuthHttp(http) {
   }), http);
 }
 
+const firebase = {
+  apiKey: "AIzaSyDqC-mtqAyLraDgcYABJP1UWZyKhlE6WUE",
+  authDomain: "rankix-1261d.firebaseapp.com",
+  databaseURL: "https://rankix-1261d.firebaseio.com",
+  projectId: "rankix-1261d",
+  storageBucket: "rankix-1261d.appspot.com",
+  messagingSenderId: "849741135316"
+};
+
 @NgModule({
   declarations: [
     MyApp
@@ -60,6 +75,8 @@ export function getAuthHttp(http) {
     GLIonic2EnvConfigurationModule,
     HttpModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(firebase), 
+    AngularFirestoreModule,
     SelectSearchableModule,
     PipesModule,
     TrainingsTabsPageModule,
@@ -80,6 +97,8 @@ export function getAuthHttp(http) {
   providers: [
     StatusBar,
     SplashScreen,
+    Firebase,
+    FcmProvider,
     AuthService,
     TrainingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -94,7 +113,8 @@ export function getAuthHttp(http) {
     CompetitionService,
     SoccerMatchService,
     TeamService,
-    TempServiceProvider
+    TempServiceProvider,
+    FcmProvider
   ]
 })
 export class AppModule {}
