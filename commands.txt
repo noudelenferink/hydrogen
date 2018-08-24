@@ -1,5 +1,5 @@
 == API STARTEN ==
-forever stop /volume1/web/rest/app.js && export NODE_ENV=production && forever start /volume1/web/rest/app.js && forever list
+forever stop /volume1/web/rest/app.js && export NODE_ENV=production && forever start -a -o /volume1/web/rest/out.log -e /volume1/web/rest/error.log /volume1/web/rest/app.js && forever list
 
 
 == DEBUG BUILD ==

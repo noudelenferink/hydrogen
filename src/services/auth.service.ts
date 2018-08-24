@@ -55,15 +55,15 @@ export class AuthService {
 
   public isAuthorized(requiredPermissions: string[]) {
     var self = this;
-    if (this.platform.is('core') || this.platform.is('mobileweb')) {
-      return true;
-    } else {
+    // if (this.platform.is('core') || this.platform.is('mobileweb')) {
+    //   return true;
+    // } else {
       if (this.isAuthenticated() && requiredPermissions.every(function (rp) { return self.userHasPermission(rp) })) {
         return true;
       }
 
       return false;
-    }
+    // }
   }
 
   private userHasPermission(permission: string): boolean {

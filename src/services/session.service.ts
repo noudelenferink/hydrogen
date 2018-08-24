@@ -6,7 +6,7 @@ export class SessionService {
   constructor() { }
   
     public getCurrentSeason() {
-      return {Id: 5, Name: '2017/2018'};
+      return {Id: 6, Name: '2018/2019'};
     }
   
     public getCurrentTeam() {
