@@ -1,0 +1,7 @@
+{
+  "name": "Rankix",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

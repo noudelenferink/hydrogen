@@ -1,0 +1,9 @@
+<ion-content>
+    <ion-item-group *ngFor="let team of result | orderBy:['TeamNumber']">
+        <ion-item-divider color="light" class="divider">
+          <span>{{team.Name}}</span>
+          <span float-right class="divider-indicator">{{team.Players.length}}</span>
+        </ion-item-divider>
+        <ion-item *ngFor="let teamPlayer of team.Players | orderBy:['PositionLineID', 'Name']  ">{{teamPlayer.Name}}<span float-right style="width:20px;text-align:center">{{teamPlayer | positionLineIndicator}}</span></ion-item>
+      </ion-item-group>
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle *ngIf="!training">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="training">
+      <span>Training: {{ training.TrainingDate | date:'dd-MM-yyyy' }}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="training">
+    <ion-list>
+      <ion-list-header>Aanwezigen</ion-list-header>
+      <ion-item *ngFor="let attendee of training.Attendees | orderBy:['FirstName', 'Surname']">
+        {{attendee.FirstName}} {{attendee.SurnamePrefix}} {{attendee.Surname}} 
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

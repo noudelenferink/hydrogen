@@ -1,0 +1,22 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <button ion-button block color="primary" *ngIf="!authService.loggedIn" (click)="login()">Log In</button>
+    <ion-list>
+        <ng-template ngFor let-p [ngForOf]="pages | orderBy:['IsManager', 'Title']">
+            <button menuClose ion-item (click)="openPage(p)" *ngIf="authService.isAuthorized(p.Permissions)">
+              <i [class]="p.Icon" style="font-size: 22px; margin-right: 10px; vertical-align: middle"></i>{{p.Title}}
+            </button>
+          </ng-template>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

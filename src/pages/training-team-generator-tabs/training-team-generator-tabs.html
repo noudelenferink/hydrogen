@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Trainingpartij generator</ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="currentPage" color="secondary">
+      <ion-segment-button value="players">
+        <span>Spelers <span *ngIf="trainingPlayers">({{trainingPlayers.length}})</span></span>
+      </ion-segment-button>
+      <ion-segment-button value="teams" [disabled]="!generatorResult">
+        <span>Teams</span>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <page-training-team-generator *ngIf="currentPage === 'players'" [workingset]="trainingPlayers"></page-training-team-generator>
+  <page-training-team-generator-result *ngIf="currentPage === 'teams'" [result]="generatorResult"></page-training-team-generator-result>
+</ion-content>

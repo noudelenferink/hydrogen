@@ -1,0 +1,79 @@
+// Adding responsiveness to ionic grid based on:
+// https://forum.ionicframework.com/t/ionic-bootstrap-like-responsive-grid-scss/63653/2
+// SirTori: Changed classes to attributes to reflect ionic 2 conventions
+// and added offset
+// CSS Media breakpoint values copied from Ionic SASS file: _grid.css
+$grid-responsive-sm-break:        567px !default;  // smaller than landscape phone
+$grid-responsive-md-break:        767px !default;  // smaller than portrait tablet
+$grid-responsive-lg-break:        1023px !default; // smaller than landscape tablet
+$screen-sm: $grid-responsive-sm-break;
+$screen-md: $grid-responsive-md-break;
+$screen-lg: $grid-responsive-lg-break;
+$col-widths: 5 10 15 20 25 30 33 40 50 60 66 70 75 80 90 100;
+[responsive] {
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+}
+@mixin col-class-maker($size, $width){
+    ion-col[width-#{$size}-#{$width}],
+    [width-#{$size}-#{$width}] {
+        flex: 0 0 percentage($width/100);
+        max-width: percentage($width/100);
+    }
+    ion-col[offset-#{$size}-#{$width}],
+    [offset-#{$size}-#{$width}] {
+        margin-left: percentage($width/100);
+    }
+}
+
+// Create the small columns
+@each $width in $col-widths {
+    @media (min-width: 0) and (max-width: $screen-sm){
+        @include col-class-maker(sm, $width);
+    }
+}
+// Create the md columns
+@each $width in $col-widths {
+    @media (min-width: ($screen-sm + 1)) and (max-width: $screen-md){
+        @include col-class-maker(md, $width);
+    }
+}
+// Create the lg columns
+@each $width in $col-widths {
+    @media (min-width: ($screen-md + 1)) and (max-width: $screen-lg){
+        @include col-class-maker(lg, $width);
+    }
+}
+
+@each $width in $col-widths {
+    @media (min-width: ($screen-lg + 1)){
+        [width-#{$width}] {
+            flex: 0 0 percentage($width/100);
+            max-width: percentage($width/100);
+        }
+        [offset-#{$width}] {
+            margin-left: percentage($width/100);
+        }
+    }
+}
+
+@media (min-width: 0) and (max-width: $screen-sm){
+    [hide-sm] {
+        display: none;
+    }
+}
+
+@media (min-width: ($screen-sm + 1)) and (max-width: $screen-md){
+    [hide-md] {
+        display: none;
+    }
+}
+
+@media (min-width: ($screen-md + 1)) and (max-width: $screen-lg){
+    [hide-lg] {
+        display: none;
+    }
+}

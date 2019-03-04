@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Training </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="saveTraining()">
+        <span>OPSLAAN</span>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="training">
+    <ion-list>
+      <ion-item *ngFor="let attendee of attendees | orderBy:['Player.FirstName', 'Player.Surname']">
+        <ion-label>{{attendee.Player | playerFullName}}</ion-label>
+        <ion-toggle item-right [(ngModel)]="attendee.HasAttended" (ionChange)="toggleAttendence(attendee)"></ion-toggle>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
