@@ -1,7 +1,0 @@
-{
-  "name": "hydrogen",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
