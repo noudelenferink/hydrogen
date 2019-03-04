@@ -1,4 +1,10 @@
 {
   "env": "dev",
-  "apiUrl": "http://localhost:3000"
+  "apiUrl": "http://xps-13-nick:3010",
+  "auth0_config": {
+    "clientID": "mg6eJQ_YOfWBx2WCxMmwsRY9IXuaUw-o",
+    "clientId": "mg6eJQ_YOfWBx2WCxMmwsRY9IXuaUw-o",
+    "domain": "rankix-dev.eu.auth0.com",
+    "packageIdentifier": "com.nifnic.rankix"
+  }
 }

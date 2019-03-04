@@ -1,11 +1,16 @@
-== API STARTEN ==
-forever stop /volume1/web/rest/app.js && export NODE_ENV=production && forever start /volume1/web/rest/app.js && forever list
+// Release APK bouwen
+// 1 - Oude APK weghalen
+rm com.nifnic.rankix.apk
 
+// 2 - APK genereren
+ionic cordova build --release android
+// OUD in jenkins??: ionic cordova build android --prod --release -- -- --gradleArg=--no-daemon
+// 3 - Signen met certificaat
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore nifnic.keystore .\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk nifnic
 
-== DEBUG BUILD ==
-npm run ionic:serve
+// 4 - Zipalign
+& 'C:\Program Files (x86)\Android\android-sdk\build-tools\28.0.3\zipalign.exe' -v 4 .\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk com.nifnic.rankix.apk
 
-== RELEASE BUILD ==
-npm run ionic:build
-ionic cordova build android
-
+// API starten op RPI3 (192.168.3.101)
+// Vanuit /home/pi/web/rankix-api
+forever start -a -o out.log -e error.log server.js

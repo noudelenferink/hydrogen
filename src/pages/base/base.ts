@@ -36,8 +36,8 @@ export abstract class BasePage {
     this.auth = injector.get(AuthService);
     this.app = injector.get(App);
 
-    this.currentSeason = this.session.getCurrentSeason();
-    this.currentTeam = this.session.getCurrentTeam();
-    this.currentCompetition = this.session.getCurrentCompetition();
+    //this.currentSeason = this.session.getCurrentSeason();
+   // this.currentTeam = this.session.getCurrentTeam();
+    //this.currentCompetition = this.session.getCurrentCompetition();
   }
 }

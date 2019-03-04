@@ -1,0 +1,20 @@
+<ion-content *ngIf="workingset">
+  <button ion-button full (click)="generateTeams()">Genereer teams</button>
+
+  <ion-item-group *ngFor="let pl of positionLines">
+      <ion-item-divider color="light"  class="divider">
+        <span>{{pl.Name}}</span>
+        <span float-right class="divider-indicator">{{(workingset | positionLine:pl.PositionLineID).length}}</span>
+      </ion-item-divider>
+      <ion-item *ngFor="let tp of workingset | positionLine:pl.PositionLineID| orderBy:['Name']" (click)="editPlayer(tp)" (press)="removePlayer(tp)">
+        <span>{{tp.Name}}</span>
+      </ion-item>
+    </ion-item-group>
+
+  <ion-fab right bottom>
+    <button ion-fab (click)="addPlayer()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  
+</ion-content>

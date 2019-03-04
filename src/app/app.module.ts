@@ -1,100 +1,88 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { AuthConfig, AuthHttp } from 'angular2-jwt';
-import { Http, HttpModule } from '@angular/http';
-import { GLIonic2EnvConfigurationModule } from 'gl-ionic2-env-configuration';
-import { SuperTabsModule } from 'ionic2-super-tabs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SelectSearchableModule } from 'ionic-select-searchable';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { MyApp } from './app.component';
-
-import { TrainingsTabsPageModule } from '../pages/trainings-tabs/trainings-tabs.module';
-import { TrainingsManagerListPageModule } from '../pages/trainings-manager-list/trainings-manager-list.module';
-
-import { CompetitionTabsPageModule } from '../pages/competition-tabs/competition-tabs.module';
-
-import { ComponentsModule } from '../components/components.module';
+import { HomePage } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-// Services
 import { AuthService } from '../services/auth.service';
+import { IonicStorageModule, Storage } from '@ionic/storage';
+import { GLIonic2EnvConfigurationModule } from 'gl-ionic2-env-configuration';
+import { TestService } from '../services/test.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SessionService } from '../services/session.service';
-import { TrainingService } from '../services/training.service';
-import { PlayerService } from '../services/player-service';
-import { CompetitionService } from '../services/competition.service';
-
-// Pipes
 import { PipesModule } from '../pipes/pipes.module';
-import { PlayerTabsPageModule } from '../pages/player-tabs/player-tabs.module';
-import { PlayerTrainingsPageModule } from '../pages/player-trainings/player-trainings.module';
-import { CompetitionManagerPageModule } from '../pages/competition-manager/competition-manager.module';
-import { CompetitionSchedulePageModule } from '../pages/competition-schedule/competition-schedule.module';
-import { CompetitionRankingPageModule } from '../pages/competition-ranking/competition-ranking.module';
-import { CompetitionResultsPageModule } from '../pages/competition-results/competition-results.module';
-import { SoccerMatchService } from '../services/soccer-match.service';
+import { TrainingsTabsPageModule } from '../pages/trainings/trainings-tabs/trainings-tabs.module';
+import { SuperTabsModule } from 'ionic2-super-tabs';
+import { TrainingService } from '../services/training.service';
+import { CustomHttpInterceptor } from './custom-http-interceptor';
+import { PlayerService } from '../services/player.service';
+import { TrainingsManagerListPageModule } from '../pages/trainings-manager/trainings-manager-list/trainings-manager-list.module';
+import { CompetitionService } from '../services/competition.service';
+import { CompetitionManagerPageModule } from '../pages/competitions-manager/competition-manager/competition-manager.module';
 import { TeamService } from '../services/team.service';
-import { TempServiceProvider } from '../providers/temp-service/temp-service';
+import { TrainingTeamGeneratorPageModule } from '../pages/training-team-generator/training-team-generator.module';
+import { TrainingTeamGeneratorTabsPageModule } from '../pages/training-team-generator-tabs/training-team-generator-tabs.module';
+import { SoccerMatchService } from '../services/soccer-match.service';
 
-export function getAuthHttp(http) {
-  return new AuthHttp(new AuthConfig({
-   //headerPrefix: YOUR_HEADER_PREFIX,
-    noJwtError: false,
-    globalHeaders: [{'Accept': 'application/json'}],
+export function jwtOptionsFactory(storage, authService: AuthService) {
+  return {
     tokenGetter: () => {
-      return window.localStorage.getItem('id_token');
+      return authService.accessToken;
+      //return storage.get('access_token');
     },
-  }), http);
+    whitelistedDomains: [ 'xps-13-nick:3010', 'nifnic.nl:3100' ]
+  }
 }
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    HomePage
   ],
   imports: [
-    BrowserModule,
+    // Own
     IonicModule.forRoot(MyApp),
-    SuperTabsModule.forRoot(),
-    GLIonic2EnvConfigurationModule,
-    HttpModule,
-    BrowserAnimationsModule,
-    SelectSearchableModule,
-    PipesModule,
     TrainingsTabsPageModule,
     TrainingsManagerListPageModule,
-    CompetitionTabsPageModule,
-    CompetitionSchedulePageModule,
-    CompetitionRankingPageModule,
-    CompetitionResultsPageModule,
-    PlayerTabsPageModule,
-    PlayerTrainingsPageModule,
     CompetitionManagerPageModule,
-    ComponentsModule
+    TrainingTeamGeneratorTabsPageModule,
+    PipesModule,
+
+    // External
+    BrowserModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
+    GLIonic2EnvConfigurationModule,
+    SuperTabsModule.forRoot(),
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [Storage, AuthService]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    AuthService,
-    TrainingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {
-      provide: AuthHttp,
-      useFactory: getAuthHttp,
-      deps: [Http]
-    },
-    { provide: LOCALE_ID, useValue: 'nl' },
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
+    AuthService,
     SessionService,
-    PlayerService,
     CompetitionService,
-    SoccerMatchService,
     TeamService,
-    TempServiceProvider
+    TrainingService,
+    PlayerService,
+    SoccerMatchService,
+    TestService
   ]
 })
 export class AppModule {}

@@ -6,25 +6,34 @@ import { PrimaryEventFilterPipe } from './primary-only';
 import { PositionTypePipe } from './position-type';
 import { GuestPlayerPipe } from './guest-player/guest-player';
 import { UsedPlayersPipe } from './used-players/used-players';
+import { PositionLineFilterPipe } from './position-line-filter';
+import { NoValuePipe } from './no-value';
+import { PositionLineIndicatorPipe } from './position-line-indicator';
 @NgModule({
 	declarations: [
 		PlayerFullNamePipe,
 		OrderByPipe,
 		PositionTypePipe,
+		PositionLineFilterPipe,
+		PositionLineIndicatorPipe,
 		UsedTeamsPipe,
 		PrimaryEventFilterPipe,
 		GuestPlayerPipe,
-    UsedPlayersPipe
+		UsedPlayersPipe,
+		NoValuePipe,
 	],
 	imports: [],
 	exports: [
 		PlayerFullNamePipe,
 		OrderByPipe,
 		PositionTypePipe,
+		PositionLineFilterPipe,
+		PositionLineIndicatorPipe,
 		UsedTeamsPipe,
 		PrimaryEventFilterPipe,
 		GuestPlayerPipe,
-    UsedPlayersPipe
+		UsedPlayersPipe,
+		NoValuePipe
 	],
 	providers: [PlayerFullNamePipe] 
 })

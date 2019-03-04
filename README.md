@@ -1,1 +1,0 @@
-Rankix - Soccer Team Manager

@@ -1,8 +1,7 @@
 {
-  "name": "hydrogen",
-  "app_id": "",
-  "type": "ionic-angular",
+  "name": "Rankix",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular"
 }

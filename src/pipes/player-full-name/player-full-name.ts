@@ -7,7 +7,7 @@ export class PlayerFullNamePipe implements PipeTransform {
   /**
    * Takes a player object and returns their full name.
    */
-  transform(value: any, args: string[]): any {
+  transform(value: any): any {
     if (!value || !value.FirstName || !value.Surname) return value;
 
     return value.FirstName + ' ' + (value.SurnamePrefix ? value.SurnamePrefix + ' ' : '') + value.Surname;

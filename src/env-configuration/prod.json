@@ -1,4 +1,11 @@
 {
   "env": "prod",
-  "apiUrl": "http://nifnic.nl:3000"
+  "apiUrl": "http://nifnic.nl:3100",
+  "defaultAuthResult": null,
+  "auth0_config": {
+    "clientID": "mg6eJQ_YOfWBx2WCxMmwsRY9IXuaUw-o",
+    "clientId": "mg6eJQ_YOfWBx2WCxMmwsRY9IXuaUw-o",
+    "domain": "rankix-dev.eu.auth0.com",
+    "packageIdentifier": "com.nifnic.rankix"
+  }
 }

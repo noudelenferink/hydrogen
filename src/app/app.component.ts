@@ -1,59 +1,77 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Component, ViewChild, Injector, NgZone } from '@angular/core';
+import { Nav, Platform, Events, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { CompetitionTabsPage } from '../pages/competition-tabs/competition-tabs';
-import { TrainingsTabsPage } from '../pages/trainings-tabs/trainings-tabs';
-import { TrainingsManagerListPage} from '../pages/trainings-manager-list/trainings-manager-list'
+import { HomePage } from '../pages/home/home';
 
+// Import Auth0Cordova
 import Auth0Cordova from '@auth0/cordova';
 import { AuthService } from '../services/auth.service';
-import { CompetitionManagerPage } from '../pages/competition-manager/competition-manager';
+import { SessionService } from '../services/session.service';
+import { TrainingsTabsPage } from '../pages/trainings/trainings-tabs/trainings-tabs';
 import { MenuItem } from '../models/menu-item';
+import { TrainingsManagerListPage } from '../pages/trainings-manager/trainings-manager-list/trainings-manager-list';
+import { CompetitionManagerPage } from '../pages/competitions-manager/competition-manager/competition-manager';
+import { TrainingTeamGeneratorPage } from '../pages/training-team-generator/training-team-generator';
+import { TrainingTeamGeneratorTabsPage } from '../pages/training-team-generator-tabs/training-team-generator-tabs';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = CompetitionTabsPage;
-  menuItems: Array<MenuItem>;
-  isApp: boolean;
+  rootPage: any;
+  pages: Array<MenuItem>;
 
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public auth: AuthService) {
-
-    if (this.platform.is('core') || this.platform.is('mobileweb')) {
-      this.isApp = false;
-    } else {
-      this.isApp = true;
-    }
-
+    public events: Events,
+    private zone: NgZone,
+    public sessionService: SessionService,
+    public authService: AuthService) {
     this.initializeApp();
 
-    this.menuItems = [
-      new MenuItem('Trainingen', TrainingsTabsPage, 'ri-football_cones', false, ["View_Trainings"]),
-      new MenuItem('Trainingenbeheer', TrainingsManagerListPage, 'ri-football_cones', true, ["Manage_Trainings"]),
-      new MenuItem('Competities', CompetitionTabsPage, 'ri-football_stats_graphic', false, ["View_Competitions"]),
-      new MenuItem('Competitiebeheer', CompetitionManagerPage, 'ri-football_stats_graphic', true, ["Manage_Competitions"])
+    // used for an example of ngFor and navigation
+    this.pages = [
+      new MenuItem('Home', HomePage, 'ri-football_cones', false),
+      new MenuItem('Trainingen', TrainingsTabsPage, 'ri-football_cones', false, ["view:trainings"]),
+      new MenuItem('Trainingbeheer', TrainingsManagerListPage, 'ri-football_cones', true, ["manage:trainings"]),
+      new MenuItem('Trainingpartij generator', TrainingTeamGeneratorTabsPage, 'ri-football_cones', false),
+      //new MenuItem('Competities', CompetitionTabsPage, 'ri-football_stats_graphic', false, ["view:competitions"]),
+      new MenuItem('Competitiebeheer', CompetitionManagerPage, 'ri-football_stats_graphic', true, ["manage:competitions"])
     ];
+
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      (<any>window).handleOpenURL = (url) => {
+      this.authService.handleAuthentication();
+      // Redirect back to app after authenticating
+      (window as any).handleOpenURL = (url: string) => {
         Auth0Cordova.onRedirectUri(url);
-      };
+      }
+
+      this.sessionService.loadSession().subscribe(result => {
+        this.nav.setRoot(TrainingTeamGeneratorTabsPage);
+      });
+      
     });
   }
 
   openPage(page) {
+    this.zone.run(() => {
     this.nav.setRoot(page.Component);
+    });
+  }
+
+  public login() {
+    this.authService.login()
   }
 }

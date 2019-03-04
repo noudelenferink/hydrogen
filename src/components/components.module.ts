@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { IonicModule } from 'ionic-angular';
+import { CallbackComponent } from './callback/callback';
 import { TeamLogoComponent } from './team-logo/team-logo';
-import { CommonModule } from '@angular/common';
 @NgModule({
-	declarations: [TeamLogoComponent],
-	imports: [CommonModule, IonicModule],
-	exports: [TeamLogoComponent]
+	declarations: [CallbackComponent, TeamLogoComponent],
+	imports: [],
+	exports: [CallbackComponent, TeamLogoComponent]
 })
 export class ComponentsModule {}

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import 'rxjs/add/operator/map';
 import { IEnvConfiguration } from '../env-configuration/IEnvConfiguration';
 import { EnvConfigurationProvider } from 'gl-ionic2-env-configuration';
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 export class TeamService extends BaseService {
 
   constructor(
-    public http: Http,
+    public http: HttpClient,
     private envConfiguration: EnvConfigurationProvider<IEnvConfiguration>
   ) {
     super(envConfiguration);
@@ -18,12 +19,12 @@ export class TeamService extends BaseService {
 
   getTeams(): Observable<Object[]> {
     return this.http.get(this.apiUrl + '/teams')
-      .map(response => response.json() as Object[]);
+      .map(response => response as Object[]);
   }
 
   retrieveTeamLogo(teamId) {
-    return this.http.get(this.apiUrl + '/teams/' + teamId + '/logo')
-      .map(image => 'data:image/png;base64,' + image.text());
+    return this.http.get(this.apiUrl + '/teams/' + teamId + '/logo', { responseType: 'text'})
+      .map(image => 'data:image/png;base64,' + image);
   }
 
 }

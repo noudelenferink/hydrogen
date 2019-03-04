@@ -3,4 +3,5 @@ export class Player {
     public FirstName: string;
     public SurnamePrefix: string;
     public Surname: string;
+    public DefaultPositionLineID: number;
 }
